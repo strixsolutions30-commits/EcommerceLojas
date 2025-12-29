@@ -79,6 +79,7 @@ function Home({setCart}) {
 
     return (
             <Box>
+             <PopularProducts  setCart={setCart}/>
                 <Box 
                     id="inicio"
                     sx={{ 
@@ -834,7 +835,7 @@ function Home({setCart}) {
                 <Box
                 id="populares"
                 >
-                 <PopularProducts  setCart={setCart}/>
+                
                 </Box>
                 
                 </Box>

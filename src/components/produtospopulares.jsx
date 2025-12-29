@@ -181,7 +181,7 @@ export function PopularProducts({ setCart }) {
     }
   };
 
-  // Toggle favoritos
+ 
   const toggleFavorite = (productId) => {
     setFavorites(prev => {
       const newFavorites = new Set(prev);
@@ -194,12 +194,12 @@ export function PopularProducts({ setCart }) {
     });
   };
 
-  // Abrir modal QuickView
+
   const handleQuickView = (product) => {
     setQuickViewProduct(product);
   };
 
-  // Fechar modal QuickView
+ 
   const handleCloseQuickView = () => {
     setQuickViewProduct(null);
   };
@@ -224,7 +224,7 @@ export function PopularProducts({ setCart }) {
               fontWeight: 'bold'
             }}
           >
-            Produtos Populares
+           Nossos produtos mais Populares
           </Typography>
           <Typography 
             variant="h6" 
