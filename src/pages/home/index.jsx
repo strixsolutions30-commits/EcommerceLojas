@@ -36,7 +36,7 @@ function Home({setCart}) {
                     setPosts([
                         {
                             id: '1',
-                            url: 'https://www.instagram.com/p/DRNtILfjaqn/?img_index=1',
+                            // url: 'https://www.instagram.com/p/DRNtILfjaqn/?img_index=1',
                             title: 'Post 1 da TiccaStore'
                         },
                         {
