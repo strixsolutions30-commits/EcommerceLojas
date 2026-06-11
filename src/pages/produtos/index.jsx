@@ -57,14 +57,29 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from 'react-router-dom'; 
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Autoplay } from 'swiper/modules';
+
+
+import imgswiper1 from '../../assets/basic-oversized-marmorizada.webp';
+import imgswiper2 from '../../assets/cropped-basic-branca.png';
+import imgswiper3 from '../../assets/regata.webp';
+import imgswiper4 from '../../assets/imgswiper4.jpg';
+import imgswiper5 from '../../assets/imgswiper5.webp';
+
+
+import item1 from '../../assets/item1.png';
+
+const images = [imgswiper1, imgswiper2, imgswiper3,imgswiper4,imgswiper5];
 
 const products = [
   {
     id: 1,
-    name: 'Vestido Floral Primavera',
-    price: 299.90,
-    image: '#',
-    category: 'Vestidos',
+    name: 'Camiseta Oversized Basic Marmorizada',
+    price: 139.90,
+    image: item1,
+    category: 'Oversized',
     colors: ['Rosa', 'Branco', 'Azul'],
     sizes: ['P', 'M', 'G', 'GG'],
     description: 'Vestido elegante com estampa floral delicada, perfeito para a primavera. Tecido leve e confortável com acabamento premium.',
@@ -74,19 +89,19 @@ const products = [
   },
   {
     id: 2,
-    name: 'Conjunto Casual Conforto',
-    price: 189.90,
+    name: 'Camiseta Oversized Basic Azul',
+    price: 129.90,
     image: '#',
     colors: ['Bege', 'Preto', 'Marrom'],
     sizes: ['P', 'M', 'G'],
-    description: 'Conjunto casual moderno e versátil para o dia a dia. Tecido respirável e design contemporâneo.',
+    description: 'Confeccionada em 100% algodão , proporcionando toque extremamente macio, conforto e durabilidade para o uso diário.',
     rating: 4.5,
     reviews: 89,
     featured: false
   },
   {
     id: 3,
-    name: 'Colar Delicado Dourado',
+     name: 'Camiseta Oversized Basic Preta',
     price: 89.90,
     image: '#',
     category: 'Acessórios',
@@ -99,7 +114,7 @@ const products = [
   },
   {
     id: 4,
-    name: 'Scarpin Salto Alto Elegante',
+    name: 'Camiseta Oversized Basic Branca',
     price: 349.90,
     image: '#',
     category: 'Calçados',
@@ -112,7 +127,7 @@ const products = [
   },
   {
     id: 5,
-    name: 'Vestido Midi Verão',
+    name: 'Camiseta Oversized Basic Marrom',
     price: 259.90,
     image: '#',
     category: 'Vestidos',
@@ -125,7 +140,7 @@ const products = [
   },
   {
     id: 6,
-    name: 'Blusa Sofisticada',
+    name: 'Cropped Basic Areia',
     price: 149.90,
     image: '#',
     category: 'Casuais',
@@ -138,7 +153,7 @@ const products = [
   },
   {
     id: 7,
-    name: 'Saia Plissada Moderna',
+    name: 'Cropped Basic Branca',
     price: 179.90,
     image: '#',
     category: 'Casuais',
@@ -151,7 +166,7 @@ const products = [
   },
   {
     id: 8,
-    name: 'Bolsa Estruturada Premium',
+    name: 'Cropped Basic Marrom',
     price: 429.90,
     image: '#',
     category: 'Acessórios',
@@ -164,7 +179,7 @@ const products = [
   },
   {
     id: 9,
-    name: 'Vestido Longo Festa',
+    name: 'Camiseta Oversized Premium Preta Iron Athletics',
     price: 449.90,
     image: '#',
     category: 'Vestidos',
@@ -177,7 +192,7 @@ const products = [
   },
   {
     id: 10,
-    name: 'Sandália Minimalista',
+    name: 'Camiseta Oversized Azul Marinho Felipi Fernandes',
     price: 279.90,
     image: '#',
     category: 'Calçados',
@@ -421,14 +436,14 @@ function ProductsPage({ initialCategory, cart, setCart }) {
                     position: 'absolute',
                     top: 12,
                     left: 12,
-                    background: 'linear-gradient(135deg, #FFD700 0%, #D4AF37 100%)',
-                    color: '#8B4513',
+                    background: 'black',
+                    color: 'white',
                     padding: '4px 12px',
                     borderRadius: '12px',
                     fontSize: '0.75rem',
                     fontWeight: 'bold',
                     zIndex: 2,
-                    boxShadow: '0 4px 12px rgba(212, 175, 55, 0.3)'
+                    boxShadow: '0 10px 12px black'
                 }}
                 >
                 Destaque
@@ -450,7 +465,7 @@ function ProductsPage({ initialCategory, cart, setCart }) {
                 onClick={() => toggleFavorite(product.id)}
             >
                 {favorites.has(product.id) ? (
-                <Favorite sx={{ color: '#E8B4C0' }} />
+                <Favorite sx={{ color: 'black' }} />
                 ) : (
                 <FavoriteBorder />
                 )}
@@ -471,7 +486,7 @@ function ProductsPage({ initialCategory, cart, setCart }) {
                 size="small" 
                 sx={{ 
                     mb: 1.5,
-                    background: 'linear-gradient(135deg, #E8B4C0 0%, #F7C7D3 100%)',
+                    background: 'black',
                     color: 'white',
                     fontWeight: '600',
                     fontSize: '0.7rem'
@@ -522,7 +537,7 @@ function ProductsPage({ initialCategory, cart, setCart }) {
                 <Typography 
                 variant="h5" 
                 sx={{ 
-                    color: '#E8B4C0',
+                    color: 'black',
                     fontWeight: 'bold',
                     fontSize: { xs: '1.1rem', md: '1.2rem' }
                 }}
@@ -540,18 +555,20 @@ function ProductsPage({ initialCategory, cart, setCart }) {
                 sx={{
                     flex: 1,
                     borderRadius: '12px',
-                    borderColor: '#E8B4C0',
-                    color: '#E8B4C0',
+                    borderColor: 'white',
+                    backgroundColor: 'black',
+                    color: 'white',
                     fontWeight: '600',
                     fontSize: '0.75rem',
                     textTransform: 'none',
                     '&:hover': {
-                    borderColor: '#D4AF37',
-                    color: '#D4AF37',
+                    borderColor: 'black',
+                    backgroundColor: 'white',
+                    color: 'black',
                     }
                 }}
                 >
-                Detalhes
+                Ver mais
                 </Button>
             </Box>
             </CardContent>
@@ -561,602 +578,478 @@ function ProductsPage({ initialCategory, cart, setCart }) {
 
 
   return (
-    <Box sx={{ 
-      minHeight: '100vh', 
-      background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
-      position: 'relative',
-      overflow: 'hidden',
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: '400px',
-        background: 'linear-gradient(135deg, #F7C7D3 0%, #F3E9DD 50%, #D4AF37 100%)',
-        opacity: 0.1,
-        zIndex: 0
-      }
-    }}>
-      <Box
-        sx={{
-          background: 'linear-gradient(135deg, #FFF8F0 0%, #FFEBCD 50%, #FFF8F0 100%)',
-          py: { xs: 10, md: 12 },
-          px: 2,
-          position: 'relative',
-          overflow: 'hidden'
-        }}
-      >
-        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-        <Slide direction="down" in={true} timeout={800}>
-            <Box sx={{ textAlign: 'center', maxWidth: '800px', mx: 'auto', position: 'relative' }}>
-            
-            <Box
-                sx={{
-                background: 'linear-gradient(135deg, #FF6B6B 0%, #C44545 50%, #8B0000 100%)',
-                color: 'white',
-                padding: { xs: '8px 20px', md: '12px 32px' },
-                borderRadius: '50px',
-                fontSize: { xs: '0.8rem', md: '1rem' },
-                fontWeight: '800',
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                display: 'inline-block',
-                mb: 3,
-                boxShadow: '0 8px 32px rgba(255, 107, 107, 0.4)',
-                border: '2px solid rgba(255, 255, 255, 0.3)',
-                backdropFilter: 'blur(10px)',
-                position: 'relative',
-                overflow: 'hidden',
-                '&::before': {
-                    content: '"🎄✨"',
-                    marginRight: '8px'
-                },
-                '&::after': {
-                    content: '"✨🎅"',
-                    marginLeft: '8px'
-                }
-                }}
-            >
-                Black Friday & Natal
-            </Box>
-
-            <Typography 
-                variant="h1" 
-                component="h1" 
-                gutterBottom
-                sx={{ 
-                background: 'linear-gradient(135deg, #8B0000 0%, #C44545 25%, #FF6B6B 50%, #228B22 75%, #006400 100%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontWeight: '900',
-                fontSize: { xs: '3rem', md: '5rem', lg: '6rem' },
-                textShadow: '0 8px 32px rgba(139, 0, 0, 0.3)',
-                mb: 2,
-                lineHeight: 1.1,
-                letterSpacing: '-1px',
-                position: 'relative',
-                '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: '-10px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '200px',
-                    height: '4px',
-                    background: 'linear-gradient(90deg, transparent, #FFD700, transparent)',
-                    borderRadius: '2px'
-                }
-                }}
-            >
-                COLEÇÃO
-                <Box 
-                component="span" 
-                sx={{ 
-                    display: 'block', 
-                    fontSize: { xs: '3.5rem', md: '6rem', lg: '7rem' },
-                    background: 'linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B8860B 100%)',
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    textShadow: '0 6px 20px rgba(212, 175, 55, 0.4)'
-                }}
-                >
-                EXCLUSIVA
-                </Box>
-            </Typography>
-
-            <Typography 
-                variant="h4" 
-                sx={{ 
-                color: '#2c3e50',
-                fontWeight: 300,
-                lineHeight: 1.6,
-                mb: 4,
-                fontSize: { xs: '1.1rem', md: '1.5rem' },
-                maxWidth: '600px',
-                mx: 'auto',
-                background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                position: 'relative',
-                padding: '20px',
-                '&::before': {
-                    content: '"❝"',
-                    position: 'absolute',
-                    top: '-10px',
-                    left: '0',
-                    fontSize: '3rem',
-                    color: '#FF6B6B',
-                    opacity: 0.3
-                },
-                '&::after': {
-                    content: '"❞"',
-                    position: 'absolute',
-                    bottom: '-30px',
-                    right: '0',
-                    fontSize: '3rem',
-                    color: '#228B22',
-                    opacity: 0.3
-                }
-                }}
-            >
-                Descubra peças únicas com{' '}
-                <Box 
-                component="span" 
-                sx={{ 
-                    fontWeight: '700',
-                    background: 'linear-gradient(135deg, #8B0000 0%, #FF6B6B 100%)',
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
-                }}
-                >
-                descontos especiais
-                </Box>{' '}
-                para as festas de fim de ano
-            </Typography>
-
-           
-            <Box
-                sx={{
-                position: 'absolute',
-                top: '-50px',
-                right: '-30px',
-                fontSize: '4rem',
-                opacity: 0.1,
-                animation: 'float 3s ease-in-out infinite',
-                '@keyframes float': {
-                    '0%, 100%': { transform: 'translateY(0px)' },
-                    '50%': { transform: 'translateY(-20px)' }
-                }
-                }}
-            >
-                🎄
-            </Box>
-            <Box
-                sx={{
-                position: 'absolute',
-                bottom: '-30px',
-                left: '-20px',
-                fontSize: '3rem',
-                opacity: 0.1,
-                animation: 'float 4s ease-in-out infinite',
-                '@keyframes float': {
-                    '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                    '50%': { transform: 'translateY(-15px) rotate(10deg)' }
-                }
-                }}
-            >
-                🎅
-            </Box>
-            <Box
-                sx={{
-                position: 'absolute',
-                top: '50%',
-                right: '10%',
-                fontSize: '2rem',
-                opacity: 0.1,
-                animation: 'spin 6s linear infinite',
-                '@keyframes spin': {
-                    '0%': { transform: 'rotate(0deg)' },
-                    '100%': { transform: 'rotate(360deg)' }
-                }
-                }}
-            >
-                ❄️
-            </Box>
-            </Box>
-        </Slide>
-        </Container>
-      </Box>
-
-      <Container maxWidth="lg" sx={{ py: 8, position: 'relative', zIndex: 1 }}>
+      /*Container Pai do Swiper no Header*/
+      <Box sx={{ 
+        minHeight: '100vh', 
+        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%)',
+        opacity: 0.9,
+        position: 'relative',
+        overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '400px',
+          background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 0%, #000000 100%)',
+          zIndex: 0
         
-        <Fade in={true} timeout={1000}>
-          <Box>
-            <Card sx={{ 
-              p: 4, 
-              mb: 6, 
-              borderRadius: '24px',
-              background: 'rgba(255,255,255,0.9)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
-            }}>
-              <Stack spacing={4}>
-                <Grid container spacing={3} alignItems="center">
-                  <Grid item xs={12} md={6}>
-                    <TextField
-                      fullWidth
-                      placeholder="Buscar produtos..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <Search sx={{ color: '#E8B4C0' }} />
-                          </InputAdornment>
-                        ),
-                        endAdornment: searchQuery && (
-                          <InputAdornment position="end">
-                            <IconButton onClick={() => setSearchQuery('')}>
-                              <Close />
-                            </IconButton>
-                          </InputAdornment>
-                        ),
-                        sx: { 
-                          borderRadius: '16px',
-                          background: 'white',
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(232, 180, 192, 0.3)'
-                          },
-                          '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#E8B4C0'
-                          }
-                        }
-                      }}
-                    />
-                  </Grid>
-
-                  <Grid item xs={6} md={0} sx={{ display: { xs: 'block', md: 'none' } }}>
-                    <Badge badgeContent={activeFiltersCount} color="primary">
-                      <Button
-                        fullWidth
-                        variant="outlined"
-                        startIcon={<FilterList />}
-                        onClick={() => setShowFilters(!showFilters)}
-                        sx={{
-                          borderRadius: '16px',
-                          borderColor: '#E8B4C0',
-                          color: '#E8B4C0',
-                          '&:hover': {
-                            borderColor: '#D4AF37',
-                            color: '#D4AF37'
-                          }
-                        }}
-                      >
-                        Filtros
-                      </Button>
-                    </Badge>
-                  </Grid>
-
-                  <Grid item xs={6} md={3}>
-                    <FormControl fullWidth>
-                      <Select
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value)}
-                        displayEmpty
-                        IconComponent={KeyboardArrowDown}
-                        sx={{ 
-                          borderRadius: '16px',
-                          background: 'white',
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(232, 180, 192, 0.3)'
-                          },
-                          '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#E8B4C0'
-                          }
-                        }}
-                      >
-                        <MenuItem value="newest">Mais Recentes</MenuItem>
-                        <MenuItem value="price-low">Menor Preço</MenuItem>
-                        <MenuItem value="price-high">Maior Preço</MenuItem>
-                        <MenuItem value="name">Nome A-Z</MenuItem>
-                        <MenuItem value="rating">Melhor Avaliado</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                </Grid>
-
-                <Box sx={{ display: { xs: showFilters ? 'block' : 'none', md: 'block' } }}>
-                  <Grid container spacing={4}>
-                    <Grid item xs={12} md={6}>
-                      <Typography variant="h6" gutterBottom sx={{ fontWeight: '600', color: '#2c3e50' }}>
-                        Categoria
-                      </Typography>
-                      <Stack direction="row" flexWrap="wrap" gap={1}>
-                        {categories.map((category) => (
-                          <Chip
-                            key={category}
-                            label={category}
-                            onClick={() => setSelectedCategory(category)}
-                            sx={{
-                              background: selectedCategory === category 
-                                ? 'linear-gradient(135deg, #E8B4C0 0%, #F7C7D3 100%)'
-                                : 'transparent',
-                              color: selectedCategory === category ? 'white' : '#E8B4C0',
-                              border: '2px solid #E8B4C0',
-                              fontWeight: '600',
-                              '&:hover': {
-                                background: 'linear-gradient(135deg, #D4AF37 0%, #FFD700 100%)',
-                                color: 'white',
-                                borderColor: '#D4AF37'
-                              }
-                            }}
-                          />
-                        ))}
-                      </Stack>
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <Typography variant="h6" gutterBottom sx={{ fontWeight: '600', color: '#2c3e50' }}>
-                        Faixa de Preço
-                      </Typography>
-                      <Stack direction="row" flexWrap="wrap" gap={1}>
-                        {priceRanges.map((range) => (
-                          <Chip
-                            key={range.label}
-                            label={range.label}
-                            onClick={() => setSelectedPriceRange(range.label)}
-                            sx={{
-                              background: selectedPriceRange === range.label 
-                                ? 'linear-gradient(135deg, #D4AF37 0%, #FFD700 100%)'
-                                : 'transparent',
-                              color: selectedPriceRange === range.label ? 'white' : '#D4AF37',
-                              border: '2px solid #D4AF37',
-                              fontWeight: '600',
-                              '&:hover': {
-                                background: 'linear-gradient(135deg, #E8B4C0 0%, #F7C7D3 100%)',
-                                color: 'white',
-                                borderColor: '#E8B4C0'
-                              }
-                            }}
-                          />
-                        ))}
-                      </Stack>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Stack>
-            </Card>
-          </Box>
-        </Fade>
-
-      
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 6 }}>
-          <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#2c3e50' }}>
-            {filteredProducts.length} {filteredProducts.length === 1 ? 'produto encontrado' : 'produtos encontrados'}
-          </Typography>
-          {(selectedCategory !== 'Todos' || selectedPriceRange !== 'Todos' || searchQuery) && (
-            <Button
-              onClick={() => {
-                setSelectedCategory('Todos');
-                setSelectedPriceRange('Todos');
-                setSearchQuery('');
-              }}
-              startIcon={<Close />}
-              sx={{ 
-                color: '#E8B4C0', 
-                fontWeight: '600',
-                '&:hover': { 
-                  color: '#D4AF37',
-                  transform: 'scale(1.05)'
-                }
-              }}
-            >
-              Limpar Filtros
-            </Button>
-          )}
+        }
+      }}>
+        <Box
+          sx={{
+            background: 'black',
+            height: '30vh',
+            position: 'relative',
+            overflow: 'hidden',
+            
+          }}
+        >
+  
+  
+          <Container 
+              maxWidth="lg" 
+              
+              sx={{ position: 'relative', zIndex: 1,background:'white' }}>
+    <Slide direction="down" in={true} timeout={800}>
+      <Box sx={{ textAlign: 'center', maxWidth: '1000px', mx: 'auto', position: 'relative' }}>
+  
+        {/* SWIPER DE IMAGENS */}
+        <Box sx={{ mb: 4 }}>
+          <Swiper
+            modules={[Autoplay]}
+            autoplay={{ delay: 2500 }}
+            loop={true}
+            spaceBetween={20}
+            slidesPerView={1}
+          >
+            {images.map((img, index) => (
+              <SwiperSlide key={index}>
+                <Box
+                  component="img"
+                  src={img}
+                  alt={`slide-${index}`}
+                  sx={{
+                    width: '100%',
+                    height: { md: 380 },
+                    objectFit: 'cover',
+                    borderRadius: 3,
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                  }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </Box>
-
-       
-       {filteredProducts.length > 0 ? (
-            <Grid 
-                container 
-                spacing={3}
-                sx={{
-                justifyContent: { xs: 'center', sm: 'flex-start' }
+  
+        {/* DECORAÇÃO */}
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '-30px',
+            left: '-20px',
+            fontSize: '3rem',
+            opacity: 0.1,
+            animation: 'float 4s ease-in-out infinite',
+            '@keyframes float': {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-15px) rotate(10deg)' }
+            }
+          }}
+        />
+  
+      </Box>
+    </Slide>
+  </Container>
+  
+        </Box>
+  
+        <Container maxWidth="lg" sx={{ py: 8, position: 'relative', zIndex: 1 }}>
+          
+          <Fade in={true} timeout={1000}>
+            <Box>
+              <Card sx={{ 
+                p: 4, 
+                mb: 6, 
+                borderRadius: '24px',
+                background: 'rgba(255,255,255,0.9)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255,255,255,0.2)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
+              }}>
+                <Stack spacing={4}>
+                  <Grid container spacing={3} alignItems="center">
+                    <Grid item xs={12} md={6}>
+                      <TextField
+                        fullWidth
+                        placeholder="Buscar produtos..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <Search sx={{ color: 'black' }} />
+                            </InputAdornment>
+                          ),
+                          endAdornment: searchQuery && (
+                            <InputAdornment position="end">
+                              <IconButton onClick={() => setSearchQuery('')}>
+                                <Close />
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                          sx: { 
+                            borderRadius: '16px',
+                            background: 'white',
+                            '& .MuiOutlinedInput-notchedOutline': {
+                              borderColor: 'rgba(232, 180, 192, 0.3)'
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                              borderColor: 'black'
+                            }
+                          }
+                        }}
+                      />
+                    </Grid>
+  
+                    <Grid item xs={6} md={0} sx={{ display: { xs: 'block', md: 'none' } }}>
+                      <Badge badgeContent={activeFiltersCount} color="primary">
+                        <Button
+                          fullWidth
+                          variant="outlined"
+                          startIcon={<FilterList />}
+                          onClick={() => setShowFilters(!showFilters)}
+                          sx={{
+                            borderRadius: '16px',
+                            borderColor: 'black',
+                            color: 'black',
+                            '&:hover': {
+                              borderColor:'black',
+                              color: 'black'
+                            }
+                          }}
+                        >
+                          Filtros
+                        </Button>
+                      </Badge>
+                    </Grid>
+  
+                    <Grid item xs={6} md={3}>
+                      <FormControl fullWidth>
+                        <Select
+                          value={sortBy}
+                          onChange={(e) => setSortBy(e.target.value)}
+                          displayEmpty
+                          IconComponent={KeyboardArrowDown}
+                          sx={{ 
+                            borderRadius: '16px',
+                            background: 'white',
+                            '& .MuiOutlinedInput-notchedOutline': {
+                              borderColor: 'black'
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                              borderColor: 'black'
+                            }
+                          }}
+                        >
+                          <MenuItem value="newest">Mais Recentes</MenuItem>
+                          <MenuItem value="price-low">Menor Preço</MenuItem>
+                          <MenuItem value="price-high">Maior Preço</MenuItem>
+                          <MenuItem value="name">Nome A-Z</MenuItem>
+                          <MenuItem value="rating">Melhor Avaliado</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                  </Grid>
+  
+                  <Box sx={{ display: { xs: showFilters ? 'block' : 'none', md: 'block' } }}>
+                    <Grid container spacing={4}>
+                      <Grid item xs={12} md={6}>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: '600', color: '#2c3e50' }}>
+                          Categoria
+                        </Typography>
+                        <Stack direction="row" flexWrap="wrap" gap={1}>
+                          {categories.map((category) => (
+                            <Chip
+                              key={category}
+                              label={category}
+                              onClick={() => setSelectedCategory(category)}
+                              sx={{
+                                background: selectedCategory === category 
+                                  ? 'black'
+                                  : 'transparent',
+                                color: selectedCategory === category ? 'white' : 'black',
+                                border: '2px solid black',
+                                fontWeight: '600',
+                                '&:hover': {
+                                  background: 'black',
+                                  color: 'white',
+                                  borderColor: 'black'
+                                }
+                              }}
+                            />
+                          ))}
+                        </Stack>
+                      </Grid>
+  
+                      <Grid item xs={12} md={6}>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: '600', color: '#2c3e50' }}>
+                          Preço
+                        </Typography>
+                        <Stack direction="row" flexWrap="wrap" gap={1}>
+                          {priceRanges.map((range) => (
+                            <Chip
+                              key={range.label}
+                              label={range.label}
+                              onClick={() => setSelectedPriceRange(range.label)}
+                              sx={{
+                                background: selectedPriceRange === range.label 
+                                  ? 'black'
+                                  : 'transparent',
+                                color: selectedPriceRange === range.label ? 'white' : 'black',
+                                border: '2px solid black',
+                                fontWeight: '600',
+                                '&:hover': {
+                                  background: 'black',
+                                  color: 'white',
+                                  borderColor: 'black'
+                                }
+                              }}
+                            />
+                          ))}
+                        </Stack>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                </Stack>
+              </Card>
+            </Box>
+          </Fade>
+  
+        
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 6 }}>
+            <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'white' }}>
+              {filteredProducts.length} {filteredProducts.length === 1 ? 'produto encontrado' : 'produtos encontrados'}
+            </Typography>
+            {(selectedCategory !== 'Todos' || selectedPriceRange !== 'Todos' || searchQuery) && (
+              <Button
+                onClick={() => {
+                  setSelectedCategory('Todos');
+                  setSelectedPriceRange('Todos');
+                  setSearchQuery('');
                 }}
-            >
-                {filteredProducts.map((product) => (
-                <Grid 
-                    item 
-                    xs={12} 
-                    sm={6} 
-                    md={4} 
-                    lg={3} 
-                    key={product.id}
-                    sx={{
-                    display: 'flex',
-                    justifyContent: 'center'
-                    }}
-                >
-                    <ProductCard
-                    product={product}
-                    onQuickView={setSelectedProduct}
-                    />
-                </Grid>
-                ))}
-            </Grid>
-            ) : (
-            <Fade in={true}>
-                <Box sx={{ textAlign: 'center', py: 12 }}>
-                <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', color: '#2c3e50', mb: 2 }}>
-                    Nenhum produto encontrado
-                </Typography>
-                <Typography variant="h6" sx={{ color: '#7f8c8d', mb: 4 }}>
-                    Tente ajustar os filtros ou a busca
-                </Typography>
-                <Button
-                    variant="contained"
-                    onClick={() => {
-                    setSelectedCategory('Todos');
-                    setSelectedPriceRange('Todos');
-                    setSearchQuery('');
-                    }}
-                    endIcon={<ArrowForward />}
-                    sx={{
-                    background: 'linear-gradient(135deg, #E8B4C0 0%, #D4AF37 100%)',
-                    boxShadow: '0 8px 25px rgba(232, 180, 192, 0.3)',
-                    fontWeight: '600',
-                    px: 4,
-                    py: 1.5,
-                    borderRadius: '16px',
-                    '&:hover': {
-                        background: 'linear-gradient(135deg, #D4AF37 0%, #E8B4C0 100%)',
-                        boxShadow: '0 12px 35px rgba(212, 175, 55, 0.4)',
-                        transform: 'translateY(-2px)'
-                    }
-                    }}
-                >
-                    Ver Todos os Produtos
-                </Button>
-                </Box>
-            </Fade>
-            )}
-      </Container>
-
-       <QuickViewModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-        onAddToCart={addToCart} 
-      />
-
-       {isMobile ? (
-              <Snackbar
-                open={snackbar.open}
-                autoHideDuration={3000}
-                onClose={handleCloseSnackbar}
-                onClick={handleMobileSnackbarClick}
-                anchorOrigin={{ 
-                  vertical: 'bottom', 
-                  horizontal: 'center'
-                }}
-                sx={{
-                  zIndex: 9999,
-                  width: '90%',
-                  marginBottom: 2,
-                  cursor: 'pointer',
-                  '&:hover .MuiAlert-root': {
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 8px 40px rgba(232, 180, 192, 0.4)',
-                    transition: 'all 0.3s ease'
+                startIcon={<Close />}
+                sx={{ 
+                  color: 'white', 
+                  fontWeight: '900',
+                  '&:hover': { 
+                    background: 'white',
+                    color: 'black',
+                    transform: 'scale(1.05)'
                   }
                 }}
               >
-                <Alert 
-                  onClose={handleCloseSnackbar}
-                  severity={snackbar.severity}
-                  variant="filled"
-                  sx={{ 
-                    width: '100%',
-                    backgroundColor: '#E8B4C0',
-                    color: 'white',
-                    fontWeight: 'bold',
-                    borderRadius: '12px',
-                    boxShadow: '0 8px 32px rgba(232, 180, 192, 0.3)',
-                    border: '2px solid rgba(255, 255, 255, 0.2)',
-                    transition: 'all 0.3s ease',
-                    '& .MuiAlert-icon': {
-                      color: 'white',
-                      fontSize: '1.5rem'
-                    },
-                    '& .MuiAlert-message': {
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      width: '100%'
-                    }
+                Limpar Filtros
+              </Button>
+            )}
+          </Box>
+  
+         
+         {filteredProducts.length > 0 ? (
+              <Grid 
+                  container 
+                  spacing={3}
+                  sx={{
+                  justifyContent: { xs: 'center', sm: 'flex-start' }
                   }}
-                  icon={<ShoppingCartIcon />}
-                  action={
-                    <ArrowForwardIcon 
-                      sx={{ 
-                        color: 'white',
-                        fontSize: '1.2rem',
-                        opacity: 0.8
+              >
+                  {filteredProducts.map((product) => (
+                  <Grid 
+                      item 
+                      xs={12} 
+                      sm={6} 
+                      md={4} 
+                      lg={3} 
+                      key={product.id}
+                      sx={{
+                      display: 'flex',
+                      justifyContent: 'center'
                       }}
-                    />
-                  }
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flex: 1 }}>
-                    <Box>
-                      <Typography sx={{ fontWeight: 'bold', fontSize: '0.95rem' }}>
-                        {snackbar.productName}
-                      </Typography>
-                      <Typography sx={{ fontSize: '0.85rem', opacity: 0.9 }}>
-                        {snackbar.message}
-                      </Typography>
-                    </Box>
+                  >
+                      <ProductCard
+                      product={product}
+                      onQuickView={setSelectedProduct}
+                      />
+                  </Grid>
+                  ))}
+              </Grid>
+              ) : (
+              <Fade in={true}>
+                  <Box sx={{ textAlign: 'center', py: 12 }}>
+                  <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', color: '#2c3e50', mb: 2 }}>
+                      Nenhum produto encontrado
+                  </Typography>
+                  <Typography variant="h6" sx={{ color: '#7f8c8d', mb: 4 }}>
+                      Tente ajustar os filtros ou a busca
+                  </Typography>
+                  <Button
+                      variant="contained"
+                      onClick={() => {
+                      setSelectedCategory('Todos');
+                      setSelectedPriceRange('Todos');
+                      setSearchQuery('');
+                      }}
+                      endIcon={<ArrowForward />}
+                      sx={{
+                      background: 'black',
+                      boxShadow: '0 8px 25px rgba(232, 180, 192, 0.3)',
+                      fontWeight: '600',
+                      px: 4,
+                      py: 1.5,
+                      borderRadius: '16px',
+                      '&:hover': {
+                          background: 'black)',
+                          boxShadow: '0 12px 35px rgba(212, 175, 55, 0.4)',
+                          transform: 'translateY(-2px)'
+                      }
+                      }}
+                  >
+                      Ver Todos os Produtos
+                  </Button>
                   </Box>
-                </Alert>
-              </Snackbar>
-            ) : (
-              // VERSÃO DESKTOP - Comportamento original
-              <Snackbar
-                open={snackbar.open}
-                autoHideDuration={3000}
-                onClose={handleCloseSnackbar}
-                anchorOrigin={{ 
-                  vertical: 'bottom', 
-                  horizontal: 'right'
-                }}
-                sx={{
-                  zIndex: 9999
-                }}
-              >
-                <Alert 
+              </Fade>
+              )}
+        </Container>
+  
+         <QuickViewModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+          onAddToCart={addToCart} 
+        />
+  
+         {isMobile ? (
+                <Snackbar
+                  open={snackbar.open}
+                  autoHideDuration={3000}
                   onClose={handleCloseSnackbar}
-                  severity={snackbar.severity}
-                  variant="filled"
-                  sx={{ 
-                    width: '100%',
-                    backgroundColor: '#E8B4C0',
-                    color: 'white',
-                    fontWeight: 'bold',
-                    borderRadius: '12px',
-                    boxShadow: '0 8px 32px rgba(232, 180, 192, 0.3)',
-                    border: '2px solid rgba(255, 255, 255, 0.2)',
-                    '& .MuiAlert-icon': {
-                      color: 'white',
-                      fontSize: '1.5rem'
-                    },
-                    '& .MuiAlert-message': {
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1
+                  onClick={handleMobileSnackbarClick}
+                  anchorOrigin={{ 
+                    vertical: 'bottom', 
+                    horizontal: 'center'
+                  }}
+                  sx={{
+                    zIndex: 9999,
+                    width: '90%',
+                    marginBottom: 2,
+                    cursor: 'pointer',
+                    '&:hover .MuiAlert-root': {
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 8px 40px rgba(232, 180, 192, 0.4)',
+                      transition: 'all 0.3s ease'
                     }
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <ShoppingCartIcon sx={{ fontSize: '1.2rem' }} />
-                    <Box>
-                      <Typography sx={{ fontWeight: 'bold', fontSize: '0.95rem' }}>
-                        {snackbar.productName}
-                      </Typography>
-                      <Typography sx={{ fontSize: '0.85rem', opacity: 0.9 }}>
-                        {snackbar.message}
-                      </Typography>
+                  <Alert 
+                    onClose={handleCloseSnackbar}
+                    severity={snackbar.severity}
+                    variant="filled"
+                    sx={{ 
+                      width: '100%',
+                      backgroundColor: 'black',
+                      color: 'white',
+                      fontWeight: 'bold',
+                      borderRadius: '12px',
+                      boxShadow: '0 8px 32px rgba(232, 180, 192, 0.3)',
+                      border: '2px solid rgba(255, 255, 255, 0.2)',
+                      transition: 'all 0.3s ease',
+                      '& .MuiAlert-icon': {
+                        color: 'white',
+                        fontSize: '1.5rem'
+                      },
+                      '& .MuiAlert-message': {
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        width: '100%'
+                      }
+                    }}
+                    icon={<ShoppingCartIcon />}
+                    action={
+                      <ArrowForwardIcon 
+                        sx={{ 
+                          color: 'white',
+                          fontSize: '1.2rem',
+                          opacity: 0.8
+                        }}
+                      />
+                    }
+                  >
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flex: 1 }}>
+                      <Box>
+                        <Typography sx={{ fontWeight: 'bold', fontSize: '0.95rem' }}>
+                          {snackbar.productName}
+                        </Typography>
+                        <Typography sx={{ fontSize: '0.85rem', opacity: 0.9 }}>
+                          {snackbar.message}
+                        </Typography>
+                      </Box>
                     </Box>
-                  </Box>
-                </Alert>
-              </Snackbar>
-            )}
-    </Box>
-  );
-}
-
-export default ProductsPage;
+                  </Alert>
+                </Snackbar>
+              ) : (
+                // VERSÃO DESKTOP - Comportamento original
+                <Snackbar
+                  open={snackbar.open}
+                  autoHideDuration={3000}
+                  onClose={handleCloseSnackbar}
+                  anchorOrigin={{ 
+                    vertical: 'bottom', 
+                    horizontal: 'right'
+                  }}
+                  sx={{
+                    zIndex: 9999
+                  }}
+                >
+                  <Alert 
+                    onClose={handleCloseSnackbar}
+                    severity={snackbar.severity}
+                    variant="filled"
+                    sx={{ 
+                      width: '100%',
+                      backgroundColor: 'black',
+                      color: 'white',
+                      fontWeight: 'bold',
+                      borderRadius: '12px',
+                      boxShadow: '0 8px 32px rgba(232, 180, 192, 0.3)',
+                      border: '2px solid rgba(255, 255, 255, 0.2)',
+                      '& .MuiAlert-icon': {
+                        color: 'white',
+                        fontSize: '1.5rem'
+                      },
+                      '& .MuiAlert-message': {
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 1
+                      }
+                    }}
+                  >
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <ShoppingCartIcon sx={{ fontSize: '1.2rem' }} />
+                      <Box>
+                        <Typography sx={{ fontWeight: 'bold', fontSize: '0.95rem' }}>
+                          {snackbar.productName}
+                        </Typography>
+                        <Typography sx={{ fontSize: '0.85rem', opacity: 0.9 }}>
+                          {snackbar.message}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Alert>
+                </Snackbar>
+              )}
+      </Box>
+    );
+  }
+  
+  export default ProductsPage;
