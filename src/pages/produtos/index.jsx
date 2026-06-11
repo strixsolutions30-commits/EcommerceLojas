@@ -120,7 +120,7 @@ const products = [
     category: 'Calçados',
     colors: ['Nude', 'Preto', 'Vermelho'],
     sizes: ['34', '35', '36', '37', '38', '39'],
-    description: 'Scarpin clássico com salto médio. Design atemporal e conforto garantido com palmilha acolchoada.',
+    description: 'Descrição',
     rating: 4.7,
     reviews: 156,
     featured: true
@@ -133,7 +133,7 @@ const products = [
     category: 'Vestidos',
     colors: ['Branco', 'Amarelo', 'Rosa'],
     sizes: ['P', 'M', 'G', 'GG'],
-    description: 'Vestido midi leve e fresco, ideal para os dias quentes. Tecido fluido e corte moderno.',
+    description: 'Descrição.',
     rating: 4.6,
     reviews: 78,
     featured: false
@@ -146,7 +146,7 @@ const products = [
     category: 'Casuais',
     colors: ['Branco', 'Preto', 'Azul'],
     sizes: ['P', 'M', 'G'],
-    description: 'Blusa elegante com detalhes refinados. Perfeita para ocasiões especiais ou trabalho.',
+    description: 'Descrição.',
     rating: 4.4,
     reviews: 92,
     featured: false
@@ -159,7 +159,7 @@ const products = [
     category: 'Casuais',
     colors: ['Preto', 'Bege', 'Vinho'],
     sizes: ['P', 'M', 'G', 'GG'],
-    description: 'Saia plissada versátil com caimento impecável. Combine com diferentes tops.',
+    description: 'Descrição.',
     rating: 4.5,
     reviews: 67,
     featured: false
@@ -172,7 +172,7 @@ const products = [
     category: 'Acessórios',
     colors: ['Preto', 'Caramelo', 'Branco'],
     sizes: ['Único'],
-    description: 'Bolsa estruturada de couro sintético premium. Design sofisticado e funcional.',
+    description: 'Descrição.',
     rating: 4.8,
     reviews: 145,
     featured: true
@@ -185,7 +185,7 @@ const products = [
     category: 'Vestidos',
     colors: ['Rosa', 'Nude', 'Azul Marinho'],
     sizes: ['P', 'M', 'G'],
-    description: 'Vestido longo elegante para eventos especiais. Corte fluido e acabamento luxuoso.',
+    description: 'Descrição.',
     rating: 4.9,
     reviews: 201,
     featured: true
@@ -198,7 +198,7 @@ const products = [
     category: 'Calçados',
     colors: ['Preto', 'Nude', 'Prata'],
     sizes: ['34', '35', '36', '37', '38', '39'],
-    description: 'Sandália com design minimalista e confortável. Perfeita para o verão.',
+    description: 'Descrição.',
     rating: 4.6,
     reviews: 112,
     featured: false
@@ -211,7 +211,7 @@ const products = [
     category: 'Acessórios',
     colors: ['Dourado', 'Prateado'],
     sizes: ['Único'],
-    description: 'Brinco argola pequeno e delicado. Acabamento premium e hipoalergênico.',
+    description: 'Descrição.',
     rating: 4.7,
     reviews: 178,
     featured: false
@@ -224,7 +224,7 @@ const products = [
     category: 'Casuais',
     colors: ['Preto', 'Bege', 'Branco'],
     sizes: ['36', '38', '40', '42'],
-    description: 'Calça de alfaiataria com modelagem wide leg. Sofisticação e conforto.',
+    description: 'Descrição.',
     rating: 4.5,
     reviews: 84,
     featured: false
