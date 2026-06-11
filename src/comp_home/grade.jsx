@@ -76,14 +76,13 @@ function Grade() {
         return () => clearInterval(timer);
     }, []);
 
-    // Altura responsiva
     const getCarouselHeight = () => {
         if (isMobile) return "500px";
         if (isTablet) return "550px";
         return "600px";
     };
 
-    // Tamanhos de fonte responsivos
+
     const getTitleSize = () => {
         if (isMobile) return "28px";
         if (isTablet) return "42px";
@@ -120,7 +119,7 @@ function Grade() {
                     overflow: "hidden"
                 }}
             >
-                {/* Slides */}
+
                 <Box
                     sx={{
                         display: "flex",
@@ -151,7 +150,6 @@ function Grade() {
                                 textAlign: { xs: "center", sm: "left" }
                             }}
                         >
-                            {/* Conteúdo do Slide */}
                             <Box
                                 sx={{
                                     maxWidth: "1200px",
@@ -162,7 +160,7 @@ function Grade() {
                                     animation: "fadeInUp 0.8s ease-out"
                                 }}
                             >
-                                {/* Badge */}
+                                
                                 <Box
                                     sx={{
                                         display: "inline-block",
@@ -179,7 +177,7 @@ function Grade() {
                                     {slide.badge}
                                 </Box>
 
-                                {/* Desconto */}
+                                
                                 <Typography
                                     sx={{
                                         fontSize: getDiscountSize(),
@@ -195,7 +193,7 @@ function Grade() {
                                     {slide.discount}
                                 </Typography>
 
-                                {/* Título */}
+                                
                                 <Typography
                                     sx={{
                                         fontWeight: "bold",
@@ -208,7 +206,7 @@ function Grade() {
                                     {slide.title}
                                 </Typography>
 
-                                {/* Subtítulo */}
+                                
                                 <Typography
                                     sx={{
                                         mb: { xs: 3, sm: 4 },
@@ -221,7 +219,7 @@ function Grade() {
                                     {slide.subtitle}
                                 </Typography>
 
-                                {/* Botão CTA */}
+                                
                                 <Box
                                     component="button"
                                     sx={{
@@ -251,7 +249,7 @@ function Grade() {
                     ))}
                 </Box>
 
-                {/* Botões de Navegação - Esconder no mobile muito pequeno? */}
+                
                 {!isMobile && (
                     <>
                         <IconButton
@@ -302,7 +300,7 @@ function Grade() {
                     </>
                 )}
 
-                {/* Swipe para mobile */}
+                
                 <Box
                     sx={{
                         position: "absolute",
@@ -325,7 +323,7 @@ function Grade() {
                     }}
                 />
 
-                {/* Indicadores */}
+                
                 <Box
                     sx={{
                         position: "absolute",
@@ -363,7 +361,6 @@ function Grade() {
                 </Box>
             </Box>
 
-            {/* Animações CSS */}
             <style>
                 {`
                     @keyframes fadeInUp {

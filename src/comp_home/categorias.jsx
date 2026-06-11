@@ -175,7 +175,7 @@ export function CategoryBlocks() {
                     backgroundColor: '#f5f5f5'
                   }}
                 >
-                  {/* Imagem */}
+                  
                   <Box
                     className="category-image"
                     sx={{
@@ -191,7 +191,7 @@ export function CategoryBlocks() {
                     />
                   </Box>
                   
-                  {/* Overlay escuro */}
+                  
                   <Box
                     className="overlay"
                     sx={{
@@ -205,7 +205,7 @@ export function CategoryBlocks() {
                     }}
                   />
                   
-                  {/* Conteúdo */}
+                  
                   <Box
                     sx={{
                       position: 'absolute',
@@ -260,7 +260,6 @@ export function CategoryBlocks() {
           ))}
         </Grid>
 
-        {/* Botão VER TUDO */}
         <Box sx={{ 
           display: 'flex', 
           justifyContent: 'center', 
@@ -292,7 +291,6 @@ export function CategoryBlocks() {
           </Box>
         </Box>
 
-        {/* Linha decorativa inferior (opcional - similar ao design) */}
         <Box sx={{ 
           display: 'flex', 
           justifyContent: 'center', 

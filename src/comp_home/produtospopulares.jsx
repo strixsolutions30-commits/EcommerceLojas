@@ -159,7 +159,6 @@ export function PopularProducts({ setCart }) {
   return (
     <Box sx={{ bgcolor: '#FFFFFF', minHeight: '100vh', py: { xs: 4, md: 6 } }}>
       <Container maxWidth="lg">
-        {/* TÍTULO NOSSOS PRODUTOS */}
         <Typography
           sx={{
             color: '#000000',
@@ -173,7 +172,7 @@ export function PopularProducts({ setCart }) {
           NOSSOS PRODUTOS
         </Typography>
 
-        {/* BOTÕES DE FILTRO - TODOS, MASCULINO, FEMININO, SALE */}
+        
         <Box sx={{ 
           display: 'flex', 
           justifyContent: 'center', 
@@ -205,7 +204,7 @@ export function PopularProducts({ setCart }) {
           ))}
         </Box>
 
-        {/* GRID DE PRODUTOS CENTRALIZADO */}
+        
         <Grid 
           container 
           spacing={{ xs: 2, sm: 2, md: 3 }} 
@@ -251,7 +250,7 @@ export function PopularProducts({ setCart }) {
                     }}
                   />
                   
-                  {/* TAG SALE ou NOVO */}
+                  
                   {product.tag && (
                     <Chip
                       label={product.tag}
@@ -269,7 +268,7 @@ export function PopularProducts({ setCart }) {
                     />
                   )}
 
-                  {/* Botão Favorito */}
+                 
                   <IconButton
                     sx={{
                       position: 'absolute',
@@ -367,7 +366,7 @@ export function PopularProducts({ setCart }) {
         </Grid>
       </Container>
 
-      {/* SNACKBAR */}
+      
       <Snackbar
         open={snackbar.open}
         autoHideDuration={3000}
