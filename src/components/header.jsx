@@ -1,4 +1,3 @@
-// components/header.jsx
 import { useState } from 'react';
 import { 
     Box,
@@ -19,7 +18,6 @@ import img from "./../img/Ticca.jpg";
 import { useNavigate } from 'react-router-dom';
 import CartModal from './../components/carrinho';
 
-// Recebe props do carrinho
 const Header = ({ 
   cartItemsCount = 0, 
   cart = [], 
