@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Typography, Grid, Container } from '@mui/material';
 
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+
 const ImageWithFallback = ({ src, alt, className }) => {
   return (
     <img
@@ -88,7 +90,7 @@ export function CategoryBlocks() {
               mb: 2
             }}
           >
-            BLACK FITNESS
+            IRON ATHLETIC
           </Typography>
           
           <Box sx={{ 
@@ -110,7 +112,15 @@ export function CategoryBlocks() {
                 color: 'white'
               }}
             >
-              EXPLORAR
+              Feito de quem treina pra quem treina <FitnessCenterIcon
+    sx={{
+      ml: 0.5,
+      fontSize: 26,
+      color: 'white',
+      verticalAlign: 'middle'
+    }}
+  />
+              
             </Typography>
             <Box sx={{ 
               width: { xs: '40px', md: '60px' }, 

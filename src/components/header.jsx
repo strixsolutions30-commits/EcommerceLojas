@@ -14,7 +14,7 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import PersonIcon from '@mui/icons-material/Person';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import img from "./../img/Ticca.jpg";
+import img from '../assets/payments/ironlogo.png';
 import { useNavigate } from 'react-router-dom';
 import CartModal from './../components/carrinho';
 
@@ -136,17 +136,18 @@ const Header = ({
           }}
           sx={{
             textDecoration: "none",
-            color: "#6b4c11",
+            color: "white",
             padding: "8px 16px",
             borderRadius: "12px",
-            backgroundColor: "rgba(255, 248, 225, 0.10)",
+            backgroundColor: "black",
             transition: "all 0.3s",
             cursor: "pointer",
             fontWeight: "600",
             fontSize: "0.95rem",
             whiteSpace: 'nowrap',
             "&:hover": {
-              backgroundColor: "rgba(255, 242, 200, 1)",
+              backgroundColor: 'white',
+              color: 'black',
               transform: "translateY(-2px)",
               boxShadow: "0 5px 15px rgba(255, 200, 50, 0.2)",
             }
@@ -159,14 +160,17 @@ const Header = ({
   );
 
   const iconButtonStyle = {
-    color: '#6b4c11',
-    backgroundColor: 'rgba(255, 248, 225, 0.7)',
-    transition: 'all 0.3s',
-    '&:hover': {
-      backgroundColor: 'rgba(255, 242, 200, 1)',
-      color: '#6b4c11',
-      transform: 'scale(1.1)'
-    }
+        color: 'white',
+        backgroundColor: 'black',
+        borderRadius:"20px",
+        width: '34px',
+        height: '34px',
+        transition: 'all 0.3s',
+        '&:hover': {
+          backgroundColor: 'white',
+        color: 'black',
+        transform: 'scale(1.1)'
+        }
   };
 
   const desktopIcons = (
@@ -190,7 +194,7 @@ const Header = ({
       <IconButton
         sx={iconButtonStyle}
         aria-label="Instagram"
-        onClick={() => window.open('https://www.instagram.com/ticcastore/', '_blank')}
+        onClick={() => window.open('https://www.instagram.com/ironathloficial/', '_blank')}
       >
         <InstagramIcon />
       </IconButton>
@@ -228,13 +232,13 @@ const Header = ({
         <Button
          onClick={handleLogin}
         sx={{
-           color: '#6b4c11',
-        backgroundColor: 'rgba(255, 248, 225, 0.7)',
+           color: 'white',
+        backgroundColor: 'black',
         borderRadius:"20px",
         transition: 'all 0.3s',
         '&:hover': {
-          backgroundColor: 'rgba(255, 242, 200, 1)',
-        color: '#6b4c11',
+          backgroundColor: 'white',
+        color: 'black',
         transform: 'scale(1.1)'
         }}} variant="contained">
           Login
@@ -255,7 +259,7 @@ const Header = ({
       <IconButton 
         sx={iconButtonStyle}
         aria-label="Instagram"
-        onClick={() => window.open('https://instagram.com/SEU_PERFIL', '_blank')}
+        onClick={() => window.open('https://instagram.com/S/ironathloficial/', '_blank')}
       >
         <InstagramIcon />
       </IconButton>
@@ -403,11 +407,11 @@ const Header = ({
           alt="TiccaStory Logo"
           sx={{
             height: { 
-              xs: 60,    
-              sm: 70,    
-              md: 85,    
-              lg: 85,    
-              xl: 95    
+              xs: 30,    
+              sm: 40,    
+              md: 50,    
+              lg: 60,    
+              xl: 70    
             },
             width: "auto",
             display: "inline-block",

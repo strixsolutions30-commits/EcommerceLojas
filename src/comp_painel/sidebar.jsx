@@ -400,7 +400,7 @@ const Sidebar = ({ children }) => {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { md: "none" } }}
+              sx={{ mr: 2, display: { md: "none" }}}
             >
               <MenuIcon />
             </IconButton>
