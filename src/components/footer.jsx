@@ -4,7 +4,16 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import img from "./../img/Ticca.jpg";
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+
+import IronLogo from '../assets/payments/ironlogo.png';
+import visa from '../assets/payments/visa.png';
+import elo from '../assets/payments/elo.png'
+import pix from '../assets/payments/pix.png';
+import picpay from '../assets/payments/picpay.png';
+import mastercard from '../assets/payments/mastercard.png';
+import bitcoin from '../assets/payments/bitcoin.png';
+
 
 function Footer() {
   return (
@@ -28,8 +37,8 @@ function Footer() {
           <Grid item xs={12} md={3}>
            <Box
         component="img"
-        src={img}
-        alt="TiccaStory Logo"
+        src={IronLogo}
+        alt="Iron Athletics Logo"
         sx={{
         
           height: { 
@@ -61,7 +70,8 @@ function Footer() {
                 lineHeight: 1.6
               }}
             >
-              Moda feminina com elegância e sofisticação. Descubra seu estilo único.
+              Feito de quem treina pra quem treina
+            <FitnessCenterIcon sx={{ fontSize: 16, color: 'black',}} />
             </Typography>
           </Grid>
 
@@ -153,7 +163,7 @@ function Footer() {
                 lineHeight: 1.6
               }}
             >
-              Siga-nos e fique por dentro das novidades
+              Siga-nos nas redes sociais
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               {[
@@ -168,7 +178,7 @@ function Footer() {
                     width: 40,
                     height: 40,
                     borderRadius: '50%',
-                    backgroundColor: '#F7C7D3',
+                    backgroundColor: 'black',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -176,7 +186,8 @@ function Footer() {
                     textDecoration: 'none',
                     transition: 'all 0.3s ease',
                     '&:hover': {
-                      backgroundColor: '#E8B4C0',
+                      backgroundColor: 'white',
+                      color: 'black',
                       transform: 'translateY(-2px)'
                     }
                   }}
@@ -190,32 +201,38 @@ function Footer() {
         </Grid>
 
         
-        <Box 
-          sx={{ 
-            borderTop: '1px solid',
-            borderColor: 'grey.200',
-            pt: 4,
-            textAlign: 'center'
-          }}
-        >
+        <Box sx={{ borderTop: '1px solid',borderColor: 'grey.200',pt: 4,textAlign: 'center'}}>
+      
+      <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: 2,
+      mb: 2, // 👈 espaço abaixo
+      flexWrap: 'wrap'
+    }}
+  >
+    <Box component="img" src={elo} alt="Elo" sx={{ height: 22 }} />
+    <Box component="img" src={visa} alt="Visa" sx={{ height: 22 }} />
+    <Box component="img" src={mastercard} alt="Mastercard" sx={{ height: 22 }} />
+    <Box component="img" src={picpay} alt="PicPay" sx={{ height: 22 }} />
+    <Box component="img" src={pix} alt="Pix" sx={{ height: 22 }} />
+    <Box component="img" src={bitcoin} alt="Bitcoin" sx={{ height: 58 }} />
+  </Box>
+      
+      
           <Typography 
             variant="body2" 
             sx={{ 
-              color: 'grey.500',
+              color: 'black.500',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: 1
             }}
           >
-            © 2025 TiccaStory. Todos os direitos reservados. Feito com 
-            <FavoriteIcon 
-              sx={{ 
-                fontSize: 16, 
-                color: '#F7C7D3',
-                fill: '#F7C7D3'
-              }} 
-            />
+            © 2025 Iron Athletics. Todos os direitos reservados.
           </Typography>
         </Box>
       </Box>
