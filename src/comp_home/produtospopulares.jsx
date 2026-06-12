@@ -305,7 +305,7 @@ export function PopularProducts({ setCart }) {
                         top: 10,
                         left: 10,
                         bgcolor: '#000',
-                        color: '#FFD700',
+                        color: 'white',
                         fontWeight: 'bold',
                         fontSize: '0.7rem',
                         borderRadius: 0
