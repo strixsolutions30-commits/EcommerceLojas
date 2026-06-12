@@ -127,12 +127,14 @@ function Footer() {
                   <Link
                     href="#"
                     sx={{
-                      color: 'grey.600',
+                      color: 'black',
+                        backgroundColor:'white',
                       textDecoration: 'none',
                       fontSize: '0.875rem',
                       transition: 'color 0.3s ease',
                       '&:hover': {
-                        color: '#E8B4C0'
+                        color: 'white',
+                        backgroundColor:'black',
                       }
                     }}
                   >

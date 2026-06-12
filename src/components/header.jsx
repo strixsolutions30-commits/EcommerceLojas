@@ -149,7 +149,7 @@ const Header = ({
               backgroundColor: 'white',
               color: 'black',
               transform: "translateY(-2px)",
-              boxShadow: "0 5px 15px rgba(255, 200, 50, 0.2)",
+              boxShadow: "0 5px 15px black",
             }
           }}
         >
@@ -305,13 +305,13 @@ const Header = ({
         <Button 
         onClick={handleLogin}
         sx={{
-           color: '#6b4c11',
-        backgroundColor: 'rgba(255, 248, 225, 0.7)',
+        color: 'white',
+        backgroundColor: 'black',
         borderRadius:"20px",
         transition: 'all 0.3s',
         '&:hover': {
-          backgroundColor: 'rgba(255, 242, 200, 1)',
-        color: '#6b4c11',
+          backgroundColor: 'white',
+        color: 'black',
         transform: 'scale(1.1)'
         }}} variant="contained">
           Login
@@ -356,7 +356,8 @@ const Header = ({
               }}
               sx={{
                 textDecoration: "none",
-                color: "#6b4c11",
+                color: 'white',
+                backgroundColor: 'black',
                 fontSize: "1.2rem",
                 fontWeight: "600",
                 padding: "12px 24px",
@@ -365,8 +366,8 @@ const Header = ({
                 textAlign: "center",
                 transition: "all 0.3s",
                 "&:hover": {
-                  backgroundColor: "rgba(255, 242, 200, 1)",
-                  color: "#5a3c08",
+                  backgroundColor: "white",
+                  color: "black",
                 }
               }}
             >
@@ -397,7 +398,7 @@ const Header = ({
           left: 0,
           right: 0, 
           zIndex: 1000,
-          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+          boxShadow: "0 2px 10px black",
           boxSizing: 'border-box', 
         }}
       >
@@ -480,7 +481,7 @@ const Header = ({
             boxSizing: 'border-box', 
             width: { xs: '100%', sm: '280px' },
             border: 'none',
-            boxShadow: '5px 0 25px rgba(0,0,0,0.1)'
+            boxShadow: '5px 0 25px black'
           },
         }}
       >

@@ -15,6 +15,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import imgLogin from './../../img/img_login.png'; 
 import { useNavigate } from "react-router-dom";
 
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+
 function Login() {
     const [showPassword, setShowPassword] = React.useState(false);
     const navigate = useNavigate();
@@ -62,18 +64,16 @@ function Login() {
                     zIndex: 2,
                     width: { xs: '90%', sm: '400px' }, 
                     padding: 4,
-                    borderRadius: '16px',
-                    
                     backgroundColor: 'rgba(255, 255, 255, 0.85)', 
                     backdropFilter: 'blur(5px)', 
                     textAlign: 'center',
-                    boxShadow: '0 8px 32px 0 rgba(140, 100, 70, 0.4)', 
+                    boxShadow: '0 8px 32px black', 
                 }}
             >
-                <LockOpenIcon sx={{ fontSize: 40, color: '#966E50', mb: 1 }} />
+                <LockOpenIcon sx={{ fontSize: 40, color: 'black', mb: 1 }} />
                 <Typography variant="h5" gutterBottom 
                     sx={{ fontWeight: 600, color: '#333333' }}>
-                    Bem-vindo(a) à Ticca Store
+                    Bem-vindo(a) à Iron Athletics  <FitnessCenterIcon sx={{ fontSize: 16, color: 'black',}} />
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 3 }}>
                     Entre para acessar sua conta.
@@ -89,7 +89,7 @@ function Login() {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <EmailIcon sx={{ color: '#966E50' }}/>
+                                    <EmailIcon sx={{ color: 'black' }}/>
                                 </InputAdornment>
                             ),
                             sx: { borderRadius: '12px' }
@@ -106,7 +106,7 @@ function Login() {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <LockOpenIcon sx={{ color: '#966E50' }}/>
+                                    <LockOpenIcon sx={{ color: 'black' }}/>
                                 </InputAdornment>
                             ),
                             endAdornment: (
@@ -119,7 +119,7 @@ function Login() {
                                     </IconButton>
                                 </InputAdornment>
                             ),
-                            sx: { borderRadius: '12px' }
+                            sx: { borderRadius: '0px' }
                         }}
                     />
 
@@ -131,11 +131,14 @@ function Login() {
                         sx={{
                             mt: 3,
                             p: 1.5,
-                            backgroundColor: '#966E50', 
+                            backgroundColor: 'black', 
                             '&:hover': {
-                                backgroundColor: '#75553E', 
+                                backgroundColor: 'white', 
+                                color: 'black',
+                                border: '1px solid black',
+                               
                             },
-                            borderRadius: '12px',
+                            
                             fontWeight: 'bold',
                             letterSpacing: '1px'
                         }}
