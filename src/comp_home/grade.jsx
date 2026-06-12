@@ -24,7 +24,7 @@ function Grade() {
             image: "https://ironathletics.com.br/cdn/shop/files/WhatsApp_Image_2026-05-20_at_11.36.46.jpg?v=1779292239&width=3840",
             imageMobile: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
             title: "Nova Coleção de Elite",
-            subtitle: "Descubra o luxo em cada detalhe",
+            subtitle: "Descubra o conforto em cada detalhe",
             badge: "Lançamento",
             discount: "-20%"
         },
@@ -32,8 +32,8 @@ function Grade() {
             id: 2,
             image: "https://ironathletics.com.br/cdn/shop/files/IMG_6243_JPG.jpg?v=1773237069&width=3840",
             imageMobile: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
-            title: "Moda Sustentável",
-            subtitle: "Estilo com consciência ambiental",
+            title: "Moda Fitness",
+            subtitle: "Pensado de quem treina para quem treina",
             badge: "Eco Friendly",
             discount: "-15%"
         },
@@ -51,7 +51,7 @@ function Grade() {
             image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
             imageMobile: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
             title: "Alta Costura",
-            subtitle: "O requinte que você merece",
+            subtitle: "Durabilidade e conforto",
             badge: "Premium",
             discount: "-25%"
         }
