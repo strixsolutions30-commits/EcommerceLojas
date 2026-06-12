@@ -93,16 +93,20 @@ function Footer() {
                   <Link
                     href="#"
                     sx={{
-                      color: 'grey.600',
+                      color: 'black',
                       textDecoration: 'none',
                       fontSize: '0.875rem',
                       transition: 'color 0.3s ease',
                       '&:hover': {
-                        color: '#E8B4C0'
-                      }
+                        color: 'black'
+                      
+                      }, 
+                      '&:hover .hover-icon': {
+                         color: 'black',}
+
                     }}
                   >
-                    {item}
+                    {item} <FitnessCenterIcon className="hover-icon" sx={{ fontSize: 16, color: 'white', }}/>
                   </Link>
                 </Box>
               ))}
@@ -133,12 +137,13 @@ function Footer() {
                       fontSize: '0.875rem',
                       transition: 'color 0.3s ease',
                       '&:hover': {
-                        color: 'white',
-                        backgroundColor:'black',
-                      }
+                        color:'black'
+                      }, 
+                      '&:hover .hover-icon': {
+                         color: 'black',}
                     }}
                   >
-                    {item}
+                    {item} <FitnessCenterIcon className="hover-icon" sx={{ fontSize: 16, color: 'white', }}/>
                   </Link>
                 </Box>
               ))}
