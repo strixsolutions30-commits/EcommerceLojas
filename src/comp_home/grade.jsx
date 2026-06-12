@@ -21,7 +21,7 @@ function Grade() {
     const slides = [
         {
             id: 1,
-            image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
+            image: "https://ironathletics.com.br/cdn/shop/files/WhatsApp_Image_2026-05-20_at_11.36.46.jpg?v=1779292239&width=3840",
             imageMobile: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
             title: "Nova Coleção de Elite",
             subtitle: "Descubra o luxo em cada detalhe",
@@ -30,7 +30,7 @@ function Grade() {
         },
         {
             id: 2,
-            image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
+            image: "https://ironathletics.com.br/cdn/shop/files/IMG_6243_JPG.jpg?v=1773237069&width=3840",
             imageMobile: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
             title: "Moda Sustentável",
             subtitle: "Estilo com consciência ambiental",
@@ -39,7 +39,7 @@ function Grade() {
         },
         {
             id: 3,
-            image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
+            image: "https://ironathletics.com.br/cdn/shop/files/IMG_2469.jpg?height=5760&v=1779245994",
             imageMobile: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1800&h=1000&fit=crop",
             title: "Coleção Limitada",
             subtitle: "Peças exclusivas para você",

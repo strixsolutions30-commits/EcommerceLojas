@@ -21,19 +21,19 @@ const ImageWithFallback = ({ src, alt, className }) => {
 
 const categories = [
   {
-    name: 'MASCULINO',
+    name: 'Camisetas Oversized',
     products: '48 PRODUTOS',
     image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=700&fit=crop',
     bgColor: '#000',
   },
   {
-    name: 'FEMININO',
+    name: 'Croppeds',
     products: '72 PRODUTOS',
     image: 'https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=600&h=700&fit=crop',
     bgColor: '#000',
   },
   {
-    name: 'LEGGINGS',
+    name: 'Regatas Premium',
     products: '35 PRODUTOS',
     image: 'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&h=700&fit=crop',
     bgColor: '#000',
