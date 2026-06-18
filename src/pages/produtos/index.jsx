@@ -69,7 +69,6 @@ import imgswiper4 from '../../assets/imgswiper4.jpg';
 import imgswiper5 from '../../assets/imgswiper5.webp';
 
 
-const images = [imgswiper1, imgswiper2, imgswiper3,imgswiper4,imgswiper5];
 
 const products = [
   {
@@ -613,36 +612,6 @@ function ProductsPage({ initialCategory, cart, setCart }) {
               sx={{ position: 'relative', zIndex: 1,background:'white' }}>
     <Slide direction="down" in={true} timeout={800}>
       <Box sx={{ textAlign: 'center', maxWidth: '1000px', mx: 'auto', position: 'relative' }}>
-  
-        {/* SWIPER DE IMAGENS */}
-        <Box sx={{ mb: 4 }}>
-          <Swiper
-            modules={[Autoplay]}
-            autoplay={{ delay: 2500 }}
-            loop={true}
-            spaceBetween={20}
-            slidesPerView={1}
-          >
-            {images.map((img, index) => (
-              <SwiperSlide key={index}>
-                <Box
-                  component="img"
-                  src={img}
-                  alt={`slide-${index}`}
-                  sx={{
-                    width: '100%',
-                    height: { md: 380 },
-                    objectFit: 'cover',
-                    borderRadius: 3,
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-                  }}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Box>
-  
-        {/* DECORAÇÃO */}
         <Box
           sx={{
             position: 'absolute',

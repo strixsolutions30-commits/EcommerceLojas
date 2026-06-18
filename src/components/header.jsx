@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
     Box,
     Typography,
@@ -7,7 +7,8 @@ import {
     List,
     ListItem,
     Button,
-    Badge } from '@mui/material';
+    Badge 
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
@@ -24,27 +25,44 @@ const Header = ({
   setCart 
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [cartModalOpen, setCartModalOpen] = useState(false); // Estado para controlar o modal
+  const [cartModalOpen, setCartModalOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0); // Corrigido: variável de estado
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const controlHeader = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", controlHeader);
+
+    return () => {
+      window.removeEventListener("scroll", controlHeader);
+    };
+  }, [lastScrollY]); // Agora a dependência está correta
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  // Função para abrir o modal do carrinho
   const handleOpenCartModal = () => {
     setCartModalOpen(true);
   };
 
-  // Função para fechar o modal do carrinho
   const handleCloseCartModal = () => {
     setCartModalOpen(false);
   };
 
-  // Funções para manipular o carrinho
   const handleUpdateQuantity = (item, newQuantity) => {
     if (newQuantity < 1) {
-      // Remove item se quantidade for 0
       handleRemoveItem(item);
       return;
     }
@@ -67,7 +85,6 @@ const Header = ({
   const handleCheckout = () => {
     alert('Redirecionando para checkout...');
     setCartModalOpen(false);
-    // navigate('/checkout'); // Descomente se tiver rota de checkout
   };
 
   const handleContinueShopping = () => {
@@ -75,20 +92,18 @@ const Header = ({
     navigate('/produtos');
   };
 
-  const handleLogin = () =>{
-    navigate('/Login')
-  }
+  const handleLogin = () => {
+    navigate('/Login');
+  };
 
   const menuItems = [
-    { name: 'Início', type: 'page', target: './' },
-    // { name: 'Populares', type: 'section', target: 'populares' },
-    // { name: 'Promoções', type: 'section', target: 'black' },
+    { name: 'Inicio', type: 'page', target: './' },
     { name: 'Produtos', type: 'page', target: '/produtos' },
-    { name: 'Contato', type: 'section', target: 'contato' }
+    { name: 'Quem Somos?', type: 'page', target: './' },
+    { name: 'Contato', type: 'section', target: 'contato'}
   ];
 
   const isLoggedIn = false;
-  
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -96,7 +111,6 @@ const Header = ({
       const headerHeight = 85; 
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-      
 
       window.scrollTo({
         top: offsetPosition,
@@ -121,9 +135,12 @@ const Header = ({
 
   const desktopMenu = (
     <Box sx={{ 
-      display: { xs: 'none', md: 'flex' }, 
+      display:"flex", 
       gap: 2, 
-      alignItems: 'center' 
+      textAlign:"center",
+      alignItems: 'center',
+      justifyContent:"space-evenly", 
+      width:"100%"
     }}>
       {menuItems.map((item) => (
         <Typography
@@ -136,20 +153,17 @@ const Header = ({
           }}
           sx={{
             textDecoration: "none",
-            color: "white",
-            padding: "8px 16px",
-            borderRadius: "12px",
-            backgroundColor: "black",
+            color: "#333",
+            backgroundColor: "tranparent",
             transition: "all 0.3s",
             cursor: "pointer",
             fontWeight: "600",
             fontSize: "0.95rem",
-            whiteSpace: 'nowrap',
             "&:hover": {
               backgroundColor: 'white',
               color: 'black',
               transform: "translateY(-2px)",
-              boxShadow: "0 5px 15px black",
+              borderBottom:"1px solid black"
             }
           }}
         >
@@ -160,17 +174,17 @@ const Header = ({
   );
 
   const iconButtonStyle = {
-        color: 'white',
-        backgroundColor: 'black',
-        borderRadius:"20px",
-        width: '34px',
-        height: '34px',
-        transition: 'all 0.3s',
-        '&:hover': {
-          backgroundColor: 'white',
-        color: 'black',
-        transform: 'scale(1.1)'
-        }
+    color: 'black',
+    // backgroundColor: 'black',
+    borderRadius: "20px",
+    width: '34px',
+    height: '34px',
+    transition: 'all 0.3s',
+    '&:hover': {
+      backgroundColor: '#333',
+      color: 'white',
+      transform: 'scale(1.1)'
+    }
   };
 
   const desktopIcons = (
@@ -224,23 +238,26 @@ const Header = ({
         </Badge>
       </IconButton>
 
-       {isLoggedIn ? (
+      {isLoggedIn ? (
         <IconButton sx={iconButtonStyle} aria-label="Perfil">
           <PersonIcon />
         </IconButton>
       ) : (
         <Button
-         onClick={handleLogin}
-        sx={{
-           color: 'white',
-        backgroundColor: 'black',
-        borderRadius:"20px",
-        transition: 'all 0.3s',
-        '&:hover': {
-          backgroundColor: 'white',
-        color: 'black',
-        transform: 'scale(1.1)'
-        }}} variant="contained">
+          onClick={handleLogin}
+          sx={{
+            color: 'white',
+            backgroundColor: 'black',
+            borderRadius: "20px",
+            transition: 'all 0.3s',
+            '&:hover': {
+              backgroundColor: 'white',
+              color: 'black',
+              transform: 'scale(1.1)'
+            }
+          }} 
+          variant="contained"
+        >
           Login
         </Button>
       )}
@@ -297,23 +314,26 @@ const Header = ({
         </Badge>
       </IconButton>
 
-       {isLoggedIn ? (
+      {isLoggedIn ? (
         <IconButton sx={iconButtonStyle} aria-label="Perfil">
           <PersonIcon />
         </IconButton>
       ) : (
         <Button 
-        onClick={handleLogin}
-        sx={{
-        color: 'white',
-        backgroundColor: 'black',
-        borderRadius:"20px",
-        transition: 'all 0.3s',
-        '&:hover': {
-          backgroundColor: 'white',
-        color: 'black',
-        transform: 'scale(1.1)'
-        }}} variant="contained">
+          onClick={handleLogin}
+          sx={{
+            color: 'white',
+            backgroundColor: 'black',
+            borderRadius: "20px",
+            transition: 'all 0.3s',
+            '&:hover': {
+              backgroundColor: 'white',
+              color: 'black',
+              transform: 'scale(1.1)'
+            }
+          }} 
+          variant="contained"
+        >
           Login
         </Button>
       )}
@@ -394,12 +414,13 @@ const Header = ({
           alignItems: "center",
           justifyContent: "space-between",
           position: "fixed",
-          top: 0,
+          top: showHeader ? 0 : "-100px", 
           left: 0,
           right: 0, 
           zIndex: 1000,
           boxShadow: "0 2px 10px black",
-          boxSizing: 'border-box', 
+          boxSizing: 'border-box',
+          transition: "top 0.3s ease-in-out" 
         }}
       >
         <Box

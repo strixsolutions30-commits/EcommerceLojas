@@ -28,18 +28,24 @@ import {
   ChevronRight,
   ExpandLess,
   ExpandMore,
+  ShoppingBag,
   LocalShipping,
-  LocationOn,
   People,
-  Build,
-  RadioButtonChecked,
-  InvertColors,
-  LocalGasStation,
-  DriveEta,
   AppRegistration,
-  Dashboard,
-  Settings,
-  Analytics,
+  Checkroom,
+  Category,
+  BrandingWatermark,
+  WorkspacePremium, 
+  Inventory,
+  AddShoppingCart,
+  RemoveShoppingCart,
+  Assessment,
+  Tune,
+  AttachMoney,
+  Today,
+  BarChart,
+  Payments,
+  AccountBalance,
 } from "@mui/icons-material";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -52,11 +58,11 @@ const Sidebar = ({ children }) => {
   const [username, setUsername] = useState("Usuário");
   const [userCargo, setUserCargo] = useState("Colaborador");
   const [anchorEl, setAnchorEl] = useState(null);
-  const navigate = useLocation();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const drawerWidth = 240;
-  const collapsedWidth = 64;
+  const collapsedWidth = 70;
 
   useEffect(() => {
     const loadUserData = () => {
@@ -74,7 +80,6 @@ const Sidebar = ({ children }) => {
 
     loadUserData();
 
-    // Verificar periodicamente por mudanças no localStorage
     const interval = setInterval(() => {
       const usuarioLogadoStr = localStorage.getItem("usuarioLogado");
       if (usuarioLogadoStr) {
@@ -129,25 +134,37 @@ const Sidebar = ({ children }) => {
   };
 
   const navItems = [
-    { label: "Viagens", href: "/", icon: <LocationOn /> },
+    { label: "Vendas", href: "/", icon: <ShoppingBag /> },
     { label: "Fornecedores", href: "/fornecedores", icon: <LocalShipping /> },
     { label: "Clientes", href: "/clientes", icon: <People /> },
     {
       label: "Cadastros",
       icon: <AppRegistration />,
       children: [
-        { label: "Motoristas", href: "/motoristas", icon: <DriveEta /> },
-        { label: "Equipamentos", href: "/equipamentos", icon: <LocalShipping /> },
+        { label: "Produtos", href: "/produtos", icon: <Checkroom /> },
+        { label: "Categorias", href: "/categorias", icon: <Category /> },
+        { label: "Marcas", href: "/marcas", icon: <BrandingWatermark /> },
+        { label: "Funcionários", href: "/funcionarios", icon: <Badge /> },
       ],
     },
     {
-      label: "Manutenção",
-      icon: <Build />,
+      label: "Estoque",
+      icon: <Inventory />,
       children: [
-        { label: "Troca de Pneu", href: "/pneus", icon: <RadioButtonChecked /> },
-        { label: "Troca de Óleo", href: "/trocadeoleo", icon: <InvertColors /> },
-        { label: "Abastecimento", href: "/gestaoabastecimento", icon: <LocalGasStation /> },
-        { label: "Manutenção", href: "/preventiva", icon: <Build /> },
+        { label: "Entrada de Mercadoria", href: "/entrada", icon: <AddShoppingCart /> },
+        { label: "Saída de Mercadoria", href: "/saida", icon: <RemoveShoppingCart /> },
+        { label: "Contagem de Estoque", href: "/contagem", icon: <Assessment /> },
+        { label: "Ajuste de Estoque", href: "/ajuste", icon: <Tune /> },
+      ],
+    },
+    {
+      label: "Financeiro",
+      icon: <AttachMoney />,
+      children: [
+        { label: "Vendas do Dia", href: "/vendas-dia", icon: <Today /> },
+        { label: "Relatório de Vendas", href: "/relatorio-vendas", icon: <BarChart /> },
+        { label: "Comissões", href: "/comissoes", icon: <Payments /> },
+        { label: "Fluxo de Caixa", href: "/fluxo-caixa", icon: <AccountBalance /> },
       ],
     },
   ];
@@ -158,7 +175,7 @@ const Sidebar = ({ children }) => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        bgcolor: theme.palette.mode === "dark" ? "#0F172A" : "#1E293B",
+        bgcolor: theme.palette.mode === "dark" ? "#4c4c4c" : "#4c4c4c",
         color: theme.palette.mode === "dark" ? "#CBD5E1" : "#E2E8F0",
       }}
     >
@@ -210,12 +227,15 @@ const Sidebar = ({ children }) => {
                     borderRadius: 2,
                     mb: 0.5,
                     bgcolor: isActive
-                      ? theme.palette.mode === "dark" ? "#2563EB" : "#3B82F6"
+                      ? theme.palette.mode === "dark" ? "white" : "white"
                       : "transparent",
                     "&:hover": {
                       bgcolor: isActive
-                        ? theme.palette.mode === "dark" ? "#2563EB" : "#3B82F6"
-                        : theme.palette.mode === "dark" ? "#1E293B" : "#334155",
+                        ? theme.palette.mode === "dark" ? "white" : "white"
+                        : theme.palette.mode === "dark" ? "white" : "white",
+                        color: isActive
+                        ? theme.palette.mode === "dark" ? "white" : "white"
+                        : theme.palette.mode === "dark" ? "black" : "black",
                     },
                     justifyContent: collapsed && !isMobileDrawer ? "center" : "flex-start",
                     minHeight: 48,
@@ -321,7 +341,7 @@ const Sidebar = ({ children }) => {
 
       {!collapsed && !isMobileDrawer && (
         <Box sx={{ p: 2, mt: "auto" }}>
-          <Divider sx={{ borderColor: theme.palette.mode === "dark" ? "#1E293B" : "#334155", mb: 2 }} />
+          <Divider sx={{ borderColor: theme.palette.mode === "dark" ? "#4e4e4e" : "#4e4e4e", mb: 2 }} />
           <Box sx={{ textAlign: "center" }}>
             <Typography variant="caption" sx={{ color: "gray.500", display: "block" }}>
               Strix_Solutions
@@ -335,61 +355,14 @@ const Sidebar = ({ children }) => {
     </Box>
   );
 
-  const drawer = (
-    <>
-      <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
-        sx={{
-          display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: drawerWidth,
-            border: "none",
-          },
-        }}
-      >
-        <SidebarContent isMobileDrawer={true} />
-      </Drawer>
-      
-      <Drawer
-        variant="permanent"
-        sx={{
-          display: { xs: "none", md: "block" },
-          width: collapsed ? collapsedWidth : drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: collapsed ? collapsedWidth : drawerWidth,
-            boxSizing: "border-box",
-            border: "none",
-            transition: theme.transitions.create("width", {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.enteringScreen,
-            }),
-            overflowX: "hidden",
-            top: "70px",
-            height: "calc(100vh - 70px)",
-          },
-        }}
-        open
-      >
-        <SidebarContent isMobileDrawer={false} />
-      </Drawer>
-    </>
-  );
-
   return (
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <AppBar
         position="fixed"
         sx={{
           zIndex: theme.zIndex.drawer + 1,
-          bgcolor: theme.palette.mode === "dark" ? "#0F172A" : "#1E293B",
-          borderBottom: `1px solid ${theme.palette.mode === "dark" ? "#1E293B" : "#334155"}`,
+          bgcolor: theme.palette.mode === "dark" ? "#4c4c4c" : "#4c4c4c",
+          borderBottom: `1px solid ${theme.palette.mode === "dark" ? "#4c4c4c" : "#4c4c4c"}`,
           height: "70px",
         }}
       >
@@ -400,23 +373,18 @@ const Sidebar = ({ children }) => {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { md: "none" }}}
+              sx={{ mr: 2, display: { md: "none" } }}
             >
               <MenuIcon />
             </IconButton>
             
             <Stack direction="row" alignItems="center" spacing={2}>
-              <Box
-                component="img"
-                src="/assets/tr.png"
-                alt="Latino Transportadora"
-                sx={{ height: "45px", objectFit: "contain" }}
-              />
+              
               <Divider
                 orientation="vertical"
                 flexItem
                 sx={{
-                  bgcolor: "rgba(255,255,255,0.1)",
+                  bgcolor: "rgba(255, 255, 255, 0.56)",
                   display: { xs: "none", lg: "block" },
                 }}
               />
@@ -424,13 +392,13 @@ const Sidebar = ({ children }) => {
                 variant="h6"
                 sx={{
                   display: { xs: "none", lg: "block" },
-                  background: "linear-gradient(to right, #90caf9, #42a5f5)",
+                  background: "white",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   fontWeight: "bold",
                 }}
               >
-                Gestão de Frota
+                Sistema Ecommerce
               </Typography>
             </Stack>
           </Stack>
@@ -509,21 +477,74 @@ const Sidebar = ({ children }) => {
         </Toolbar>
       </AppBar>
 
-      {drawer}
+      {/* DRAWER MOBILE */}
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true,
+        }}
+        sx={{
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: drawerWidth,
+            border: "none",
+            top: "70px",
+            height: "calc(100vh - 70px)",
+          },
+        }}
+      >
+        <SidebarContent isMobileDrawer={true} />
+      </Drawer>
+      
+      {/* DRAWER DESKTOP */}
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: "none", md: "block" },
+          width: collapsed ? collapsedWidth : drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: collapsed ? collapsedWidth : drawerWidth,
+            boxSizing: "border-box",
+            border: "none",
+            borderRight: `1px solid ${theme.palette.mode === "dark" ? "#1E293B" : "#334155"}`,
+            transition: theme.transitions.create("width", {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
+            overflowX: "hidden",
+            overflowY: "auto",
+            top: "70px",
+            height: "calc(100vh - 70px)",
+            position: "fixed",
+            left: 0,
+          },
+        }}
+        open
+      >
+        <SidebarContent isMobileDrawer={false} />
+      </Drawer>
 
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           p: 3,
-          pt: { xs: "calc(70px + 24px)", md: "calc(70px + 24px)" },
-          ml: { xs: 0, md: collapsed ? `${collapsedWidth}px` : `${drawerWidth}px` },
-          transition: theme.transitions.create("margin-left", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-          }),
+          pt: "calc(70px + 24px)",
+          paddingLeft: { 
+            xs: 3, 
+            md: collapsed ? `${collapsedWidth + -50}px` : `${drawerWidth + -200}px`
+          },
+          width: "100%",
           minHeight: "100vh",
-          bgcolor: theme.palette.grey[100],
+          boxSizing: "border-box",
+          transition: theme.transitions.create("padding-left", {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
         }}
       >
         {children}
