@@ -15,7 +15,7 @@ function AppContent() {
     0
   );
 
-    const hideLayoutRoutes = ["/Login", "/Painel"];
+    const hideLayoutRoutes = ["/Login", "/estoque"];
 
   
     const hideLayout = hideLayoutRoutes.includes(location.pathname);
