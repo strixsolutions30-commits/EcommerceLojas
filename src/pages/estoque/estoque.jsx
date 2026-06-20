@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -139,7 +139,7 @@ const initialMockItems = [
 
 const EstoqueRoupas = () => {
   const theme = useTheme();
-  const [items, setItems] = useState(initialMockItems);
+  const [items, setItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterCategory, setFilterCategory] = useState("todos");
   const [filterStatus, setFilterStatus] = useState("todos");
@@ -158,8 +158,32 @@ const EstoqueRoupas = () => {
     fornecedor: "",
     descricao: "",
   });
+  
+  const busca = async () => {
+    try {
+      const response = await fetch(
+        "https://oudtlilrwlvcxdmuobhv.supabase.co/rest/v1/produtos",
+        {
+          method: "GET",
+          headers: {
+            apikey: process.env.REACT_APP_SUPABASE_KEY,
+            Authorization: `Bearer ${process.env.REACT_APP_SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            Prefer: "return=representation",
+          },
+        }
+      );
 
-  // Categorias únicas para filtro
+      const data = await response.json();
+      setItems(data);
+    } catch (error) {
+      console.error("Erro ao buscar itens:", error);
+    }
+  };
+
+  useEffect(() => { busca();}, []);
+
+
   const categories = ["todos", ...new Set(items.map(item => item.categoria))];
   const statusOptions = ["todos", "ativo", "baixo", "critico"];
 
@@ -384,7 +408,11 @@ const EstoqueRoupas = () => {
                   label="Buscar"
                   placeholder="Buscar por nome ou fornecedor..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e)=>{
+                    const value = e.target.value;
+                    setSearchTerm(value); 
+                    busca();
+                  }}
                   InputProps={{
                     startAdornment: <SearchIcon sx={{ mr: 1, color: "text.secondary" }} />
                   }}

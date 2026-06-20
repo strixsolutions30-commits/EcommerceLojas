@@ -73,7 +73,7 @@ import imgswiper5 from '../../assets/imgswiper5.webp';
 const products = [
   {
     id: 1,
-    name: 'Camiseta Oversized Basic Marmorizada',
+    name: ['Camiseta Oversized Basic Marmorizada','Camisa'],
     price: 139.90,
     image: './item1.png',
     category: 'Oversized',
@@ -86,7 +86,7 @@ const products = [
   },
   {
     id: 2,
-    name: 'Camiseta Oversized Basic Azul',
+    name: ['Camiseta Oversized Basic Azul'] ,
     price: 129.90,
     image: './item2.png',
     colors: ['Bege', 'Preto', 'Marrom'],
@@ -215,7 +215,7 @@ const products = [
   },
   {
     id: 12,
-    name: 'Calça Wide Leg Elegante',
+    name: ['Calça Wide Leg Elegante', 'calsa'],
     price: 229.90,
     image: './item12.png',
     category: 'Casuais',
@@ -227,6 +227,7 @@ const products = [
     featured: false
   },
 ];
+
 
 function ProductsPage({ initialCategory, cart, setCart }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -324,8 +325,13 @@ function ProductsPage({ initialCategory, cart, setCart }) {
 
   const filteredProducts = useMemo(() => {
     let filtered = products.filter((product) => {
-      const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          product.description.toLowerCase().includes(searchQuery.toLowerCase());
+  const query = searchQuery.toLowerCase();
+
+  const matchesSearch =
+    product.name.some(nome =>
+      nome.toLowerCase().includes(query)
+    ) ||
+    product.description.toLowerCase().includes(query);
       
       const matchesCategory = selectedCategory === 'Todos' || product.category === selectedCategory;
       
