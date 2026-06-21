@@ -37,106 +37,7 @@ import {
   Search as SearchIcon,
   Close as CloseIcon,
 } from "@mui/icons-material";
-
-
-// const initialMockItems = [
-//   {
-//     id: 1,
-//     nome: "Camisa Polo Azul",
-//     categoria: "Camisas",
-//     tamanho: "M",
-//     cor: "Azul",
-//     quantidade: 45,
-//     preco: 89.90,
-//     fornecedor: "ModaStyle",
-//     status: "ativo",
-//     descricao: "Camisa polo em tecido 100% algodão, azul marinho"
-//   },
-//   {
-//     id: 2,
-//     nome: "Calça Jeans Skinny",
-//     categoria: "Calças",
-//     tamanho: "38",
-//     cor: "Azul Escuro",
-//     quantidade: 32,
-//     preco: 159.90,
-//     fornecedor: "JeansFashion",
-//     status: "ativo",
-//     descricao: "Calça jeans skinny com elastano, azul escuro"
-//   },
-//   {
-//     id: 3,
-//     nome: "Tênis Esportivo Branco",
-//     categoria: "Calçados",
-//     tamanho: "39",
-//     cor: "Branco",
-//     quantidade: 18,
-//     preco: 299.90,
-//     fornecedor: "SportWear",
-//     status: "ativo",
-//     descricao: "Tênis esportivo com amortecimento, branco"
-//   },
-//   {
-//     id: 4,
-//     nome: "Vestido Floral",
-//     categoria: "Vestidos",
-//     tamanho: "P",
-//     cor: "Estampado",
-//     quantidade: 12,
-//     preco: 189.90,
-//     fornecedor: "FloralFashion",
-//     status: "baixo",
-//     descricao: "Vestido floral com cintura alta"
-//   },
-//   {
-//     id: 5,
-//     nome: "Jaqueta de Couro",
-//     categoria: "Jaquetas",
-//     tamanho: "M",
-//     cor: "Preto",
-//     quantidade: 8,
-//     preco: 399.90,
-//     fornecedor: "CouroSul",
-//     status: "baixo",
-//     descricao: "Jaqueta de couro legítimo, preta"
-//   },
-//   {
-//     id: 6,
-//     nome: "Camiseta Básica Branca",
-//     categoria: "Camisas",
-//     tamanho: "GG",
-//     cor: "Branco",
-//     quantidade: 67,
-//     preco: 49.90,
-//     fornecedor: "BásicoFashion",
-//     status: "ativo",
-//     descricao: "Camiseta básica 100% algodão, branca"
-//   },
-//   {
-//     id: 7,
-//     nome: "Short Jeans Feminino",
-//     categoria: "Calças",
-//     tamanho: "40",
-//     cor: "Azul Claro",
-//     quantidade: 25,
-//     preco: 79.90,
-//     fornecedor: "JeansFashion",
-//     status: "ativo",
-//     descricao: "Short jeans com lavagem clara"
-//   },
-//   {
-//     id: 8,
-//     nome: "Blazer Social",
-//     categoria: "Jaquetas",
-//     tamanho: "G",
-//     cor: "Cinza",
-//     quantidade: 5,
-//     preco: 259.90,
-//     fornecedor: "SocialWear",
-//     status: "critico",
-//     descricao: "Blazer social em lã, cinza"
-//   },
-// ];
+import { Tooltip } from '@mui/material';
 
 const EstoqueRoupas = () => {
   const theme = useTheme();
@@ -160,16 +61,17 @@ const EstoqueRoupas = () => {
     fornecedor: "",
     descricao: "",
   });
-  
+  const [refresh, setRefresh] = useState(false);
+
 
 useEffect(() => {
   loadItems();
-}, []);
+}, [refresh]);
 
 const loadItems = async () => {
   try {
     const data = await searchItems();
-     console.log("📦 Dados recebidos da API:", data); // ← DEBUG
+     console.log(" Estoque API.JSON:", data); //
 
     // 🔥 Garante que todos os itens tenham nome e fornecedor
     const sanitizedData = data.map(item => ({
@@ -261,9 +163,8 @@ const loadItems = async () => {
   };
 
   const handleSubmit = async () => {
-  console.log("🔍 FormData antes de enviar:", formData);
   
-  // Validação básica
+  // Validação de input
   if (!formData.nome || !formData.categoria) {
     setSnackbar({
       open: true,
@@ -284,13 +185,12 @@ const loadItems = async () => {
     descricao: formData.descricao?.trim() || '',
   };
 
-  console.log("📦 Payload final:", payload);
+  console.log("Payload final:", payload);
 
   try {
     if (editingItem) {
-      // 🔵 EDITAR - ADICIONEI O AWAIT 🔥
       const updatedItem = await updateItem(editingItem.id, payload);
-      console.log("✅ Item atualizado:", updatedItem);
+      console.log("updateItem sucessfull:", updatedItem);
       
       setItems(items.map(item => 
         item.id === editingItem.id ? updatedItem : item
@@ -302,8 +202,8 @@ const loadItems = async () => {
         severity: "success"
       });
       setEditingItem(null);
+      setRefresh(prev => !prev);
     } else {
-      // 🟢 ADICIONAR - ADICIONEI O AWAIT 🔥
       const newItem = await addItem(payload);
       console.log("✅ Novo item criado:", newItem);
       
@@ -315,7 +215,7 @@ const loadItems = async () => {
         severity: "success"
       });
     }
-    
+    setRefresh(prev => !prev);
     setOpenModal(false);
     resetForm();
   } catch (error) {
@@ -607,13 +507,23 @@ const loadItems = async () => {
                     </TableCell>
                     <TableCell align="center">
                       <Stack direction="row" spacing={1} justifyContent="center">
-                        <IconButton
-                          size="small"
-                          color="primary"
-                          onClick={() => handleEditItem(item)}
-                        >
-                          <EditIcon fontSize="small" />
-                        </IconButton>
+                        <Tooltip title = "Editar item" arrow slotProps={{
+                          tooltip:{sx: {backgroundColor: '#ffffff',color: '#000000',fontFamily: 'Verdana, Arial, Helvetica, sans-serif',fontSize: '0.8rem',}}
+                        }}
+                          >
+                            <IconButton
+                               size="small"
+                                  color="primary"
+                                    onClick={() => handleEditItem(item)}
+                              >
+                            <EditIcon fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+
+                        <Tooltip title = "Excluir item" arrow slotProps={{
+                          tooltip:{sx: {backgroundColor: '#ffffff',color: '#000000',fontFamily: 'Verdana, Arial, Helvetica, sans-serif',fontSize: '0.8rem',}}
+                        }}
+                          >
                         <IconButton
                           size="small"
                           color="error"
@@ -621,6 +531,7 @@ const loadItems = async () => {
                         >
                           <DeleteIcon fontSize="small" />
                         </IconButton>
+                        </Tooltip>
                       </Stack>
                     </TableCell>
                   </TableRow>
