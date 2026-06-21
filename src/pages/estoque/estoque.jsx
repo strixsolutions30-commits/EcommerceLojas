@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { searchItems, addItem, updateItem, deleteItem } from "./estoque";
 import {
   Box,
   Typography,
@@ -38,104 +39,104 @@ import {
 } from "@mui/icons-material";
 
 
-const initialMockItems = [
-  {
-    id: 1,
-    nome: "Camisa Polo Azul",
-    categoria: "Camisas",
-    tamanho: "M",
-    cor: "Azul",
-    quantidade: 45,
-    preco: 89.90,
-    fornecedor: "ModaStyle",
-    status: "ativo",
-    descricao: "Camisa polo em tecido 100% algodão, azul marinho"
-  },
-  {
-    id: 2,
-    nome: "Calça Jeans Skinny",
-    categoria: "Calças",
-    tamanho: "38",
-    cor: "Azul Escuro",
-    quantidade: 32,
-    preco: 159.90,
-    fornecedor: "JeansFashion",
-    status: "ativo",
-    descricao: "Calça jeans skinny com elastano, azul escuro"
-  },
-  {
-    id: 3,
-    nome: "Tênis Esportivo Branco",
-    categoria: "Calçados",
-    tamanho: "39",
-    cor: "Branco",
-    quantidade: 18,
-    preco: 299.90,
-    fornecedor: "SportWear",
-    status: "ativo",
-    descricao: "Tênis esportivo com amortecimento, branco"
-  },
-  {
-    id: 4,
-    nome: "Vestido Floral",
-    categoria: "Vestidos",
-    tamanho: "P",
-    cor: "Estampado",
-    quantidade: 12,
-    preco: 189.90,
-    fornecedor: "FloralFashion",
-    status: "baixo",
-    descricao: "Vestido floral com cintura alta"
-  },
-  {
-    id: 5,
-    nome: "Jaqueta de Couro",
-    categoria: "Jaquetas",
-    tamanho: "M",
-    cor: "Preto",
-    quantidade: 8,
-    preco: 399.90,
-    fornecedor: "CouroSul",
-    status: "baixo",
-    descricao: "Jaqueta de couro legítimo, preta"
-  },
-  {
-    id: 6,
-    nome: "Camiseta Básica Branca",
-    categoria: "Camisas",
-    tamanho: "GG",
-    cor: "Branco",
-    quantidade: 67,
-    preco: 49.90,
-    fornecedor: "BásicoFashion",
-    status: "ativo",
-    descricao: "Camiseta básica 100% algodão, branca"
-  },
-  {
-    id: 7,
-    nome: "Short Jeans Feminino",
-    categoria: "Calças",
-    tamanho: "40",
-    cor: "Azul Claro",
-    quantidade: 25,
-    preco: 79.90,
-    fornecedor: "JeansFashion",
-    status: "ativo",
-    descricao: "Short jeans com lavagem clara"
-  },
-  {
-    id: 8,
-    nome: "Blazer Social",
-    categoria: "Jaquetas",
-    tamanho: "G",
-    cor: "Cinza",
-    quantidade: 5,
-    preco: 259.90,
-    fornecedor: "SocialWear",
-    status: "critico",
-    descricao: "Blazer social em lã, cinza"
-  },
-];
+// const initialMockItems = [
+//   {
+//     id: 1,
+//     nome: "Camisa Polo Azul",
+//     categoria: "Camisas",
+//     tamanho: "M",
+//     cor: "Azul",
+//     quantidade: 45,
+//     preco: 89.90,
+//     fornecedor: "ModaStyle",
+//     status: "ativo",
+//     descricao: "Camisa polo em tecido 100% algodão, azul marinho"
+//   },
+//   {
+//     id: 2,
+//     nome: "Calça Jeans Skinny",
+//     categoria: "Calças",
+//     tamanho: "38",
+//     cor: "Azul Escuro",
+//     quantidade: 32,
+//     preco: 159.90,
+//     fornecedor: "JeansFashion",
+//     status: "ativo",
+//     descricao: "Calça jeans skinny com elastano, azul escuro"
+//   },
+//   {
+//     id: 3,
+//     nome: "Tênis Esportivo Branco",
+//     categoria: "Calçados",
+//     tamanho: "39",
+//     cor: "Branco",
+//     quantidade: 18,
+//     preco: 299.90,
+//     fornecedor: "SportWear",
+//     status: "ativo",
+//     descricao: "Tênis esportivo com amortecimento, branco"
+//   },
+//   {
+//     id: 4,
+//     nome: "Vestido Floral",
+//     categoria: "Vestidos",
+//     tamanho: "P",
+//     cor: "Estampado",
+//     quantidade: 12,
+//     preco: 189.90,
+//     fornecedor: "FloralFashion",
+//     status: "baixo",
+//     descricao: "Vestido floral com cintura alta"
+//   },
+//   {
+//     id: 5,
+//     nome: "Jaqueta de Couro",
+//     categoria: "Jaquetas",
+//     tamanho: "M",
+//     cor: "Preto",
+//     quantidade: 8,
+//     preco: 399.90,
+//     fornecedor: "CouroSul",
+//     status: "baixo",
+//     descricao: "Jaqueta de couro legítimo, preta"
+//   },
+//   {
+//     id: 6,
+//     nome: "Camiseta Básica Branca",
+//     categoria: "Camisas",
+//     tamanho: "GG",
+//     cor: "Branco",
+//     quantidade: 67,
+//     preco: 49.90,
+//     fornecedor: "BásicoFashion",
+//     status: "ativo",
+//     descricao: "Camiseta básica 100% algodão, branca"
+//   },
+//   {
+//     id: 7,
+//     nome: "Short Jeans Feminino",
+//     categoria: "Calças",
+//     tamanho: "40",
+//     cor: "Azul Claro",
+//     quantidade: 25,
+//     preco: 79.90,
+//     fornecedor: "JeansFashion",
+//     status: "ativo",
+//     descricao: "Short jeans com lavagem clara"
+//   },
+//   {
+//     id: 8,
+//     nome: "Blazer Social",
+//     categoria: "Jaquetas",
+//     tamanho: "G",
+//     cor: "Cinza",
+//     quantidade: 5,
+//     preco: 259.90,
+//     fornecedor: "SocialWear",
+//     status: "critico",
+//     descricao: "Blazer social em lã, cinza"
+//   },
+// ];
 
 const EstoqueRoupas = () => {
   const theme = useTheme();
@@ -149,6 +150,7 @@ const EstoqueRoupas = () => {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
   const [formData, setFormData] = useState({
+    id: "",
     nome: "",
     categoria: "",
     tamanho: "",
@@ -159,42 +161,54 @@ const EstoqueRoupas = () => {
     descricao: "",
   });
   
-  const busca = async () => {
-    try {
-      const response = await fetch(
-        "https://oudtlilrwlvcxdmuobhv.supabase.co/rest/v1/produtos",
-        {
-          method: "GET",
-          headers: {
-            apikey: process.env.REACT_APP_SUPABASE_KEY,
-            Authorization: `Bearer ${process.env.REACT_APP_SUPABASE_KEY}`,
-            "Content-Type": "application/json",
-            Prefer: "return=representation",
-          },
-        }
-      );
 
-      const data = await response.json();
-      setItems(data);
-    } catch (error) {
-      console.error("Erro ao buscar itens:", error);
+useEffect(() => {
+  loadItems();
+}, []);
+
+const loadItems = async () => {
+  try {
+    const data = await searchItems();
+     console.log("📦 Dados recebidos da API:", data); // ← DEBUG
+
+    // 🔥 Garante que todos os itens tenham nome e fornecedor
+    const sanitizedData = data.map(item => ({
+      ...item,
+      nome: item?.nome || 'Sem nome',
+      fornecedor: item?.fornecedor || 'Sem fornecedor',
+      categoria: item?.categoria || 'Sem categoria',
+      status: item?.status || 'ativo',
+    }));
+    
+    setItems(sanitizedData);
+  } catch (error) {
+    console.error("Erro ao carregar itens:", error);
+    setSnackbar({ open: true,
+        message: "Erro ao carregar itens",
+        severity: "error"
+      });
     }
   };
-
-  useEffect(() => { busca();}, []);
-
 
   const categories = ["todos", ...new Set(items.map(item => item.categoria))];
   const statusOptions = ["todos", "ativo", "baixo", "critico"];
 
   // Filtrar itens
-  const filteredItems = items.filter(item => {
-    const matchesSearch = item.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.fornecedor.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = filterCategory === "todos" || item.categoria === filterCategory;
-    const matchesStatus = filterStatus === "todos" || item.status === filterStatus;
-    return matchesSearch && matchesCategory && matchesStatus;
-  });
+ const filteredItems = items.filter(item => {
+  // Se o item for undefined/null, já descarta
+  if (!item) return false;
+  
+  // Garante que nome e fornecedor sejam strings
+  const nome = (item.nome || '').toLowerCase();
+  const fornecedor = (item.fornecedor || '').toLowerCase();
+  const search = (searchTerm || '').toLowerCase();
+  
+  const matchesSearch = nome.includes(search) || fornecedor.includes(search);
+  const matchesCategory = filterCategory === "todos" || (item.categoria || '') === filterCategory;
+  const matchesStatus = filterStatus === "todos" || (item.status || '') === filterStatus;
+  
+  return matchesSearch && matchesCategory && matchesStatus;
+});
 
   // Estatísticas
   const totalItems = items.reduce((sum, item) => sum + item.quantidade, 0);
@@ -233,11 +247,6 @@ const EstoqueRoupas = () => {
     setOpenModal(true);
   };
 
-  const handleDeleteItem = (item) => {
-    setItemToDelete(item);
-    setOpenDeleteDialog(true);
-  };
-
   const confirmDelete = () => {
     if (itemToDelete) {
       setItems(items.filter(item => item.id !== itemToDelete.id));
@@ -251,42 +260,105 @@ const EstoqueRoupas = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+  console.log("🔍 FormData antes de enviar:", formData);
+  
+  // Validação básica
+  if (!formData.nome || !formData.categoria) {
+    setSnackbar({
+      open: true,
+      message: "Preencha todos os campos obrigatórios!",
+      severity: "error"
+    });
+    return;
+  }
+
+  const payload = {
+    nome: formData.nome?.trim() || '',
+    categoria: formData.categoria?.trim() || '',
+    tamanho: formData.tamanho?.trim() || '',
+    cor: formData.cor?.trim() || '',
+    quantidade: parseInt(formData.quantidade) || 0,
+    preco: parseFloat(formData.preco) || 0,
+    fornecedor: formData.fornecedor?.trim() || '',
+    descricao: formData.descricao?.trim() || '',
+  };
+
+  console.log("📦 Payload final:", payload);
+
+  try {
     if (editingItem) {
-      // Editar item existente
+      // 🔵 EDITAR - ADICIONEI O AWAIT 🔥
+      const updatedItem = await updateItem(editingItem.id, payload);
+      console.log("✅ Item atualizado:", updatedItem);
+      
       setItems(items.map(item => 
-        item.id === editingItem.id 
-          ? {
-              ...item,
-              ...formData,
-              quantidade: parseInt(formData.quantidade),
-              preco: parseFloat(formData.preco),
-              status: parseInt(formData.quantidade) < 5 ? "critico" : parseInt(formData.quantidade) < 15 ? "baixo" : "ativo"
-            }
-          : item
+        item.id === editingItem.id ? updatedItem : item
       ));
+      
       setSnackbar({
         open: true,
         message: `${formData.nome} foi atualizado com sucesso.`,
         severity: "success"
       });
+      setEditingItem(null);
     } else {
-      // Adicionar novo item
-      const newItem = {
-        id: Math.max(...items.map(i => i.id)) + 1,
-        ...formData,
-        quantidade: parseInt(formData.quantidade),
-        preco: parseFloat(formData.preco),
-        status: parseInt(formData.quantidade) < 5 ? "critico" : parseInt(formData.quantidade) < 15 ? "baixo" : "ativo"
-      };
+      // 🟢 ADICIONAR - ADICIONEI O AWAIT 🔥
+      const newItem = await addItem(payload);
+      console.log("✅ Novo item criado:", newItem);
+      
       setItems([...items, newItem]);
+      
       setSnackbar({
         open: true,
         message: `${formData.nome} foi adicionado ao estoque.`,
         severity: "success"
       });
     }
+    
     setOpenModal(false);
+    resetForm();
+  } catch (error) {
+    console.error("❌ Erro detalhado:", error);
+    setSnackbar({
+      open: true,
+      message: `Erro ao salvar: ${error.message}`,
+      severity: "error"
+    });
+  }
+};
+
+  const resetForm = () => {
+      setFormData({
+        id: "",
+        nome: "",
+        categoria: "",
+        tamanho: "",
+        cor: "",
+        quantidade: "",
+        preco: "",
+        fornecedor: "",
+        descricao: "",
+    });
+  };
+  const handleDelete = async (id) => {
+    if (window.confirm("Tem certeza que deseja excluir?")) {
+      try {
+        await deleteItem(id);
+        setItems(items.filter(item => item.id !== id));
+        setSnackbar({
+          open: true,
+          message: "Item excluído com sucesso.",
+          severity: "success"
+        });
+      } catch (error) {
+        setSnackbar({
+          open: true,
+          message: `Erro ao excluir: ${error.message}`,
+          severity: "error"
+        });
+      }
+    }
   };
 
   const handleInputChange = (e) => {
@@ -332,10 +404,14 @@ const EstoqueRoupas = () => {
           <Button
             variant="contained"
             startIcon={<AddIcon />}
-            onClick={handleAddItem}
+            onClick={() => {
+              setEditingItem(null);
+              resetForm();
+              setOpenModal(true);
+            }}
             size="large"
           >
-            Novo Item
+            Cadastrar Novo Item 
           </Button>
         </Box>
 
@@ -360,7 +436,7 @@ const EstoqueRoupas = () => {
                   Valor Total
                 </Typography>
                 <Typography variant="h4" color="success.main">
-                  R$ {totalValue.toFixed(2)}
+                  R$ {totalValue ? totalValue.toFixed(2) : '0.00'}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Valor do estoque
@@ -411,7 +487,7 @@ const EstoqueRoupas = () => {
                   onChange={(e)=>{
                     const value = e.target.value;
                     setSearchTerm(value); 
-                    busca();
+                   searchItems();
                   }}
                   InputProps={{
                     startAdornment: <SearchIcon sx={{ mr: 1, color: "text.secondary" }} />
@@ -519,7 +595,7 @@ const EstoqueRoupas = () => {
                     <TableCell align="right">{item.quantidade}</TableCell>
                     <TableCell align="right">
                       <Typography color="success.main" fontWeight="semibold">
-                        R$ {item.preco.toFixed(2)}
+                         R$ {item.preco ? item.preco.toFixed(2) : '0.00'}
                       </Typography>
                     </TableCell>
                     <TableCell>
@@ -541,7 +617,7 @@ const EstoqueRoupas = () => {
                         <IconButton
                           size="small"
                           color="error"
-                          onClick={() => handleDeleteItem(item)}
+                          onClick={() => deleteItem(item)}
                         >
                           <DeleteIcon fontSize="small" />
                         </IconButton>
@@ -557,7 +633,7 @@ const EstoqueRoupas = () => {
 
         <Dialog open={openModal} onClose={() => setOpenModal(false)} maxWidth="md" fullWidth>
           <DialogTitle>
-            {editingItem ? "Editar Item" : "Adicionar Novo Item"}
+            {editingItem ? "Editar Item" : "Cadastrar Novo Item"}
           </DialogTitle>
           <DialogContent>
             <Grid container spacing={2} sx={{ mt: 1 }}>
@@ -676,7 +752,7 @@ const EstoqueRoupas = () => {
           <DialogActions>
             <Button onClick={() => setOpenModal(false)}>Cancelar</Button>
             <Button variant="contained" onClick={handleSubmit}>
-              {editingItem ? "Atualizar" : "Adicionar"}
+              {editingItem ? "Atualizar" : "Cadastrar Item"}
             </Button>
           </DialogActions>
         </Dialog>
@@ -685,9 +761,9 @@ const EstoqueRoupas = () => {
           <DialogTitle>Excluir Item</DialogTitle>
           <DialogContent>
             {itemToDelete && (
-              <Typography>
-                Tem certeza que deseja excluir <strong>{itemToDelete.nome}</strong>?
-                Esta ação não pode ser desfeita.
+              <Typography align="center" color="text.secondary">
+                Tem certeza que deseja excluir <strong>{itemToDelete.nome}</strong>?<br /><br />
+                Esta ação <strong></strong>não poderá ser desfeita.
               </Typography>
             )}
           </DialogContent>

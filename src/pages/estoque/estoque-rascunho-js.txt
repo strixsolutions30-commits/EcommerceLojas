@@ -1,0 +1,57 @@
+const API_URL = process.env.REACT_APP_SUPABASE_KEY;
+const API_KEY = process.env.REACT_APP_API_URL;
+
+const headers = {
+  apikey: API_KEY,
+  Authorization: `Bearer ${API_KEY}`,
+  "Content-Type": "application/json",
+  Prefer: "return=representation",
+};
+
+// 🔵 READ (GET)
+export const searchItems = async () => {
+  const res = await fetch(`${API_URL}`, {
+    method: "GET",
+    headers,
+  });
+
+  return await res.json();
+};
+
+// 🟢 CREATE (POST)
+export const createProduto = async (produto) => {
+  const res = await fetch(`${API_URL}/rest/v1/produtos`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(produto),
+  });
+
+  return await res.json();
+};
+
+// 🟡 UPDATE (PATCH)
+export const updateProduto = async (id, produto) => {
+  const res = await fetch(
+    `${API_URL}${id}`,
+    {
+      method: "PATCH",
+      headers,
+      body: JSON.stringify(produto),
+    }
+  );
+
+  return await res.json();
+};
+
+// 🔴 DELETE
+export const deleteProduto = async (id) => {
+  const res = await fetch(
+    `${API_URL}/rest/v1/produtos?id=eq.${id}`,
+    {
+      method: "DELETE",
+      headers,
+    }
+  );
+
+  return await res.json();
+};
